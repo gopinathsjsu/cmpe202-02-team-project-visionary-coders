@@ -1,7 +1,5 @@
 # Campus Marketplace API (FastAPI)
 
-A reference implementation of a campus-only marketplace backend built with **FastAPI**.
-
 ## Highlights
 - JWT auth with roles: **buyer**, **seller**, **admin**
 - Listings CRUD with photos (S3-ready; local storage by default)
@@ -17,6 +15,13 @@ A reference implementation of a campus-only marketplace backend built with **Fas
 - Swagger UI at `/docs`
 
 > For deployment (AWS EC2 Auto Scaling + Load Balancer), see `docs/deployment.md`.
+
+## API DOCS
+
+```bash
+Swagger UI: http://127.0.0.1:8000/docs
+ReDoc UI: http://127.0.0.1:8000/redoc
+```
 
 ## Quickstart (Local, Python 3.11+)
 ```bash
