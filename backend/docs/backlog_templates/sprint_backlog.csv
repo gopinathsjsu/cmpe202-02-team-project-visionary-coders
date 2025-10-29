@@ -1,0 +1,4 @@
+Sprint,User Story,Task,Assignee,Estimate(h),Status,Notes
+1,"As a seller I can create a listing","Design listing schema",Alice,2,Done,
+1,"As a buyer I can search","Implement GET /listings",Bob,4,In Progress,
+1,"As admin I can moderate","Implement reports list",Admin,3,Todo,
