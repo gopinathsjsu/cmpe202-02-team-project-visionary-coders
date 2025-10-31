@@ -1,0 +1,604 @@
+{
+  "placeholderImages": [
+    {
+      "id": "user-1",
+      "description": "Avatar for Sarah Lee",
+      "imageUrl": "https://images.unsplash.com/photo-1590086782792-42dd2350140d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NTg3ODg5NzR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "user-2",
+      "description": "Avatar for Mike Johnson",
+      "imageUrl": "https://images.unsplash.com/photo-1590086782792-42dd2350140d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NTg3ODg5NzR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "user-3",
+      "description": "Avatar for Emily Chen",
+      "imageUrl": "https://images.unsplash.com/photo-1557053908-4793c484d06f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx3b21hbiUyMHBvcnRyYWl0fGVufDB8fHx8MTc1ODc1MTMyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "woman portrait"
+    },
+    {
+      "id": "user-4",
+      "description": "Avatar for David Kim",
+      "imageUrl": "https://images.unsplash.com/photo-1547425260-76bc4ddd9f32?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwZXJzb258ZW58MHx8fHwxNzE4MTAzODc0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "user-5",
+      "description": "Avatar for Jessica Rodriguez",
+      "imageUrl": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3b21hbnxlbnwwfHx8fDE3MTgxMDM4ODV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "woman portrait"
+    },
+    {
+      "id": "product-1-1",
+      "description": "Vintage leather armchair",
+      "imageUrl": "https://images.unsplash.com/photo-1553197470-4241cfa0c7c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bGVhdGhlciUyMGFybWNoYWlyfGVufDB8fHx8MTc1ODg0NTQxNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "leather armchair"
+    },
+    {
+      "id": "product-1-2",
+      "description": "Side view of vintage leather armchair",
+      "imageUrl": "https://images.unsplash.com/photo-1507473707539-69dc878df4fd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxsZWF0aGVyJTIwYXJtY2hhaXJ8ZW58MHx8fHwxNzU4ODQ1NDE0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "leather armchair"
+    },
+    {
+      "id": "product-1-3",
+      "description": "Close up of vintage leather armchair",
+      "imageUrl": "https://images.unsplash.com/photo-1567890981977-1865c361956a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxNHx8bGVhdGhlciUyMGFybWNoYWlyfGVufDB8fHx8MTc1ODg0NTQxNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "leather armchair"
+    },
+    {
+      "id": "product-1-4",
+      "description": "Another angle of vintage leather armchair",
+      "imageUrl": "https://images.unsplash.com/photo-1641199057777-51f141adab80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxsZWF0aGVyJTIwYXJtY2hhaXJ8ZW58MHx8fHwxNzU4ODQ1NDE0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "leather armchair"
+    },
+    {
+      "id": "product-1-5",
+      "description": "Fabric detail of vintage leather armchair",
+      "imageUrl": "https://images.unsplash.com/photo-1643717715249-dc6505250648?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxsZWF0aGVyJTIwYXJtY2hhaXJ8ZW58MHx8fHwxNzU4ODQ1NDE0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "leather armchair"
+    },
+    {
+      "id": "product-2-1",
+      "description": "Mountain bike",
+      "imageUrl": "https://images.unsplash.com/photo-1575548393466-0df1618ba410?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtb3VudGFpbiUyMGJpa2V8ZW58MHx8fHwxNzU4ODM3NDg1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "mountain bike"
+    },
+    {
+      "id": "product-2-2",
+      "description": "Close up of mountain bike",
+      "imageUrl": "https://images.unsplash.com/photo-1576426863848-c21f68c60b20?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtb3VudGFpbiUyMGJpa2V8ZW58MHx8fHwxNzU4ODM3NDg1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "mountain bike"
+    },
+    {
+      "id": "product-2-3",
+      "description": "Mountain bike on a trail",
+      "imageUrl": "https://images.unsplash.com/photo-1511994294239-5039311b02a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtb3VudGFpbiUyMGJpa2V8ZW58MHx8fHwxNzU4ODM3NDg1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "mountain bike"
+    },
+    {
+      "id": "product-2-4",
+      "description": "Mountain bike gears",
+      "imageUrl": "https://images.unsplash.com/photo-1621122940876-2b3be129159c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtb3VudGFpbiUyMGJpa2V8ZW58MHx8fHwxNzU4ODM3NDg1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "mountain bike"
+    },
+    {
+      "id": "product-2-5",
+      "description": "Mountain bike handlebar",
+      "imageUrl": "https://images.unsplash.com/photo-1604850613811-b50ad1aeeecd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxtb3VudGFpbiUyMGJpa2V8ZW58MHx8fHwxNzU4ODM3NDg1fDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "mountain bike"
+    },
+    {
+      "id": "product-3-1",
+      "description": "Acoustic guitar",
+      "imageUrl": "https://images.unsplash.com/photo-1567771736315-133752f63a69?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxhY291c3RpYyUyMGd1aXRhcnxlbnwwfHx8fDE3NTg4MDA2NjR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "acoustic guitar"
+    },
+    {
+      "id": "product-3-2",
+      "description": "Close up of acoustic guitar",
+      "imageUrl": "https://images.unsplash.com/photo-1510915361894-db8b60106cb1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxhY291c3RpYyUyMGd1aXRhcnxlbnwwfHx8fDE3NTg4MDA2NjR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "acoustic guitar"
+    },
+    {
+      "id": "product-3-3",
+      "description": "Person playing acoustic guitar",
+      "imageUrl": "https://images.unsplash.com/photo-1525201548942-d8732f6617a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxhY291c3RpYyUyMGd1aXRhcnxlbnwwfHx8fDE3NTg4MDA2NjR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "acoustic guitar"
+    },
+    {
+      "id": "product-3-4",
+      "description": "Acoustic guitar headstock",
+      "imageUrl": "https://images.unsplash.com/photo-1588449668365-d15e397f6787?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxhY291c3RpYyUyMGd1aXRhcnxlbnwwfHx8fDE3NTg4MDA2NjR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "acoustic guitar"
+    },
+    {
+      "id": "product-3-5",
+      "description": "Acoustic guitar body",
+      "imageUrl": "https://images.unsplash.com/photo-1510915361894-db8b60106cb1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxhY291c3RpYyUyMGd1aXRhcnxlbnwwfHx8fDE3NTg4MDA2NjR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "acoustic guitar"
+    },
+    {
+      "id": "product-4-1",
+      "description": "Sony mirrorless camera",
+      "imageUrl": "https://images.unsplash.com/photo-1606986601547-a4d886b671b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxtaXJyb3JsZXNzJTIwY2FtZXJhfGVufDB8fHx8MTc1ODc2NjMyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "mirrorless camera"
+    },
+    {
+      "id": "product-4-2",
+      "description": "Sony mirrorless camera with lens",
+      "imageUrl": "https://images.unsplash.com/photo-1516244562095-a5e3f1687053?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxtaXJyb3JsZXNzJTIwY2FtZXJhfGVufDB8fHx8MTc1ODc2NjMyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "mirrorless camera"
+    },
+    {
+      "id": "product-4-3",
+      "description": "Back of Sony mirrorless camera",
+      "imageUrl": "https://images.unsplash.com/photo-1616421293393-2f84a4133373?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtaXJyb3JsZXNzJTIwY2FtZXJhfGVufDB8fHx8MTc1ODc2NjMyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "mirrorless camera"
+    },
+    {
+      "id": "product-4-4",
+      "description": "Sony camera lens",
+      "imageUrl": "https://images.unsplash.com/photo-1606986601547-a4d886b671b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxtaXJyb3JsZXNzJTIwY2FtZXJhfGVufDB8fHx8MTc1ODc2NjMyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "mirrorless camera"
+    },
+    {
+      "id": "product-4-5",
+      "description": "Sony camera sensor",
+      "imageUrl": "https://images.unsplash.com/photo-1623232931441-8ffe8d50bef4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxtaXJyb3JsZXNzJTIwY2FtZXJhfGVufDB8fHx8MTc1ODc2NjMyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "mirrorless camera"
+    },
+    {
+      "id": "product-5-1",
+      "description": "Set of ceramic mugs",
+      "imageUrl": "https://images.unsplash.com/photo-1669329322659-3779dc49f849?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjZXJhbWljJTIwbXVnc3xlbnwwfHx8fDE3NTg4MzQ5MDR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ceramic mugs"
+    },
+    {
+      "id": "product-5-2",
+      "description": "Single ceramic mug",
+      "imageUrl": "https://images.unsplash.com/photo-1555510657-61c140498555?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjZXJhbWljJTIwbXVnc3xlbnwwfHx8fDE3NTg4MzQ5MDR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ceramic mug"
+    },
+    {
+      "id": "product-5-3",
+      "description": "Stack of ceramic mugs",
+      "imageUrl": "https://images.unsplash.com/photo-1595433994734-b3339d774a44?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjZXJhbWljJTIwbXVnc3xlbnwwfHx8fDE3NTg4MzQ5MDR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ceramic mugs"
+    },
+    {
+      "id": "product-5-4",
+      "description": "Person holding ceramic mug",
+      "imageUrl": "https://images.unsplash.com/photo-1691067973393-111799953d28?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y2VyYW1pYyUyMG11Z3xlbnwwfHx8fDE3NTg4MzI5NzB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ceramic mug"
+    },
+    {
+      "id": "product-5-5",
+      "description": "Empty ceramic mug",
+      "imageUrl": "https://images.unsplash.com/photo-1536936812504-0e77dc3f0b40?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjZXJhbWljJTIwbXVnfGVufDB8fHx8MTc1ODgzMjk3MHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ceramic mug"
+    },
+    {
+      "id": "product-6-1",
+      "description": "Designer table lamp",
+      "imageUrl": "https://images.unsplash.com/photo-1580130281320-0ef0754f2bf7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx0YWJsZSUyMGxhbXB8ZW58MHx8fHwxNzU4ODQ1NDE0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "table lamp"
+    },
+    {
+      "id": "product-6-2",
+      "description": "Table lamp on a desk",
+      "imageUrl": "https://images.unsplash.com/photo-1543439248-433f6378440c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx0YWJsZSUyMGxhbXB8ZW58MHx8fHwxNzU4ODQ1NDE0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "table lamp"
+    },
+    {
+      "id": "product-6-3",
+      "description": "Close up of table lamp",
+      "imageUrl": "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx0YWJsZSUyMGxhbXB8ZW58MHx8fHwxNzU4ODQ1NDE0fDA&ixlibrb-4.1.0&q=80&w=1080",
+      "imageHint": "table lamp"
+    },
+    {
+      "id": "product-6-4",
+      "description": "Table lamp turned on",
+      "imageUrl": "https://images.unsplash.com/photo-1551380701-5dd33d5b5d06?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx0YWJsZSUyMGxhbXB8ZW58MHx8fHwxNzU4ODQ1NDE0fDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "table lamp"
+    },
+    {
+      "id": "product-6-5",
+      "description": "Table lamp base",
+      "imageUrl": "https://images.unsplash.com/photo-1573676386604-78f8ed228e2b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0YWJsZSUyMGxhbXB8ZW58MHx8fHwxNzU4ODQ1NDE0fDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "table lamp"
+    },
+    {
+      "id": "product-7-1",
+      "description": "Potted snake plant",
+      "imageUrl": "https://images.unsplash.com/photo-1615213612138-4d1195b1c0e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxwb3R0ZWQlMjBwbGFudHxlbnwwfHx8fDE3NTg4MjIzOTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "potted plant"
+    },
+    {
+      "id": "product-7-2",
+      "description": "Close up of snake plant",
+      "imageUrl": "https://images.unsplash.com/photo-1587329245147-a8703a63e97a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzbmFrZSUyMHBsYW50fGVufDB8fHx8MTc1ODgwMjIwMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "snake plant"
+    },
+    {
+      "id": "product-7-3",
+      "description": "Snake plant in a room",
+      "imageUrl": "https://images.unsplash.com/photo-1600411832986-5a4477b649ac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzbmFrZSUyMHBsYW50fGVufDB8fHx8MTc1ODgwMjIwMnww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "snake plant"
+    },
+    {
+      "id": "product-7-4",
+      "description": "Snake plant leaves",
+      "imageUrl": "https://images.unsplash.com/photo-1616961065849-edf307a08bcb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxzbmFrZSUyMHBsYW50fGVufDB8fHx8MTc1ODgyODY5OXww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "snake plant"
+    },
+    {
+      "id": "product-7-5",
+      "description": "Snake plant pot",
+      "imageUrl": "https://images.unsplash.com/photo-1593482892540-73c9199d8949?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxzbmFrZSUyMHBsYW50fGVufDB8fHx8MTc1ODgyODY5OXww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "snake plant"
+    },
+    {
+      "id": "product-8-1",
+      "description": "Classic leather backpack",
+      "imageUrl": "https://images.unsplash.com/photo-1569397592157-3ef5ee016cf6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxsZWF0aGVyJTIwYmFja3BhY2t8ZW58MHx8fHwxNzU4ODQ1NDE0fDA&ixlibrb-4.1.0&q=80&w=1080",
+      "imageHint": "leather backpack"
+    },
+    {
+      "id": "product-8-2",
+      "description": "Open leather backpack",
+      "imageUrl": "https://images.unsplash.com/photo-1553062407-98eada666a56?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxsZWF0aGVyJTIwYmFja3BhY2t8ZW58MHx8fHwxNzU4ODQ1NDE0fDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "leather backpack"
+    },
+    {
+      "id": "product-8-3",
+      "description": "Person wearing leather backpack",
+      "imageUrl": "https://images.unsplash.com/photo-1621961446345-c63c6c1f9c8f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxsZWF0aGVyJTIwYmFja3BhY2t8ZW58MHx8fHwxNzU4ODQ1NDE0fDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "leather backpack"
+    },
+    {
+      "id": "product-8-4",
+      "description": "Backpack straps",
+      "imageUrl": "https://images.unsplash.com/photo-1549943872-f7ff0b2b51be?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxsZWF0aGVyJTIwYmFja3BhY2t8ZW58MHx8fHwxNzU4ODQ1NDE0fDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "leather backpack"
+    },
+    {
+      "id": "product-8-5",
+      "description": "Backpack pocket detail",
+      "imageUrl": "https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxsZWF0aGVyJTIwYmFja3BhY2t8ZW58MHx8fHwxNzU4ODQ1NDE0fDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "leather backpack"
+    },
+    {
+      "id": "product-9-1",
+      "description": "Fitness tracker smartwatch",
+      "imageUrl": "https://images.unsplash.com/photo-1690016424217-03f4d9427a6a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzbWFydHdhdGNoJTIwZml0bmVzc3xlbnwwfHx8fDE3NTg4NDU0MTR8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "smartwatch fitness"
+    },
+    {
+      "id": "product-9-2",
+      "description": "Smartwatch on a wrist",
+      "imageUrl": "https://images.unsplash.com/photo-1546868871-7041f2a55e12?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzbWFydHdhdGNofGVufDB8fHx8MTc1ODg0NTQxNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "smartwatch"
+    },
+    {
+      "id": "product-9-3",
+      "description": "Close up of smartwatch face",
+      "imageUrl": "https://images.unsplash.com/photo-1579586337278-35d9994a49cd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxzbWFydHdhdGNofGVufDB8fHx8MTc1ODg0NTQxNHww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "smartwatch"
+    },
+    {
+      "id": "product-9-4",
+      "description": "Smartwatch charging",
+      "imageUrl": "https://images.unsplash.com/photo-1617625802912-cde586faf331?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzbWFydHdhdGNofGVufDB8fHx8MTc1ODgwOTE0OXww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "smartwatch"
+    },
+    {
+      "id": "product-9-5",
+      "description": "Smartwatch app interface",
+      "imageUrl": "https://images.unsplash.com/photo-1660844817855-3ecc7ef21f12?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzbWFydHdhdGNofGVufDB8fHx8MTc1ODgwOTE0OXww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "smartwatch"
+    },
+    {
+      "id": "product-10-1",
+      "description": "Psychology textbook",
+      "imageUrl": "https://images.unsplash.com/photo-1647708958244-8347e9b9b4ae?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHx0ZXh0Ym9vayUyMHBzeWNob2xvZ3l8ZW58MHx8fHwxNzU4ODQ1NDE0fDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "textbook psychology"
+    },
+    {
+      "id": "product-10-2",
+      "description": "Open psychology textbook",
+      "imageUrl": "https://images.unsplash.com/photo-1516979187457-637abb4f9353?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0ZXh0Ym9va3xlbnwwfHx8fDE3NTg4NDU0MTR8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "textbook"
+    },
+    {
+      "id": "product-10-3",
+      "description": "Textbook pages",
+      "imageUrl": "https://images.unsplash.com/photo-1588912914017-923900a34710?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx0ZXh0Ym9va3xlbnwwfHx8fDE3NTg3ODI0NzB8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "textbook"
+    },
+    {
+      "id": "product-10-4",
+      "description": "Textbook cover",
+      "imageUrl": "https://images.unsplash.com/photo-1532543307581-8b01a7ff954f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0ZXh0Ym9va3xlbnwwfHx8fDE3NTg3ODI0NzB8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "textbook"
+    },
+    {
+      "id": "product-10-5",
+      "description": "Student reading textbook",
+      "imageUrl": "https://images.unsplash.com/photo-1654124803043-f68082033a81?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx0ZXh0Ym9va3xlbnwwfHx8fDE3NTg3ODI0NzB8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "textbook"
+    },
+    {
+      "id": "product-11-1",
+      "description": "Portable bluetooth speaker",
+      "imageUrl": "https://images.unsplash.com/photo-1589256469067-ea99122bbdc4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxibHVldG9vdGglMjBzcGVha2VyfGVufDB8fHx8MTc1ODc4MDM4OXww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "bluetooth speaker"
+    },
+    {
+      "id": "product-11-2",
+      "description": "Bluetooth speaker on a table",
+      "imageUrl": "https://images.unsplash.com/photo-1618374509394-3606c0aaf289?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxibHVldG9vdGglMjBzcGVha2VyfGVufDB8fHx8MTc1ODc4MDM4OXww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "bluetooth speaker"
+    },
+    {
+      "id": "product-11-3",
+      "description": "Person holding bluetooth speaker",
+      "imageUrl": "https://images.unsplash.com/photo-1620954492148-858606c87f98?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxibHVldG9vdGglMjBzcGVha2VyfGVufDB8fHx8MTc1ODc4MDM4OXww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "bluetooth speaker"
+    },
+    {
+      "id": "product-11-4",
+      "description": "Bluetooth speaker outdoors",
+      "imageUrl": "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxibHVldG9vdGglMjBzcGVha2VyfGVufDB8fHx8MTc1ODc4MDM4OXww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "bluetooth speaker"
+    },
+    {
+      "id": "product-11-5",
+      "description": "Bluetooth speaker controls",
+      "imageUrl": "https://images.unsplash.com/photo-1529359744902-86b2ab9edaea?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxibHVldG9vdGglMjBzcGVha2VyfGVufDB8fHx8MTc1ODc4MDM4OXww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "bluetooth speaker"
+    },
+    {
+      "id": "product-12-1",
+      "description": "Chemistry textbook",
+      "imageUrl": "https://images.unsplash.com/photo-1662962160191-82e99c70d3d9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjaGVtaXN0cnklMjB0ZXh0Ym9va3xlbnwwfHx8fDE3NTg4NDU0MTR8MA&ixlibrb-4.1.0&q=80&w=1080",
+      "imageHint": "chemistry textbook"
+    },
+    {
+      "id": "product-12-2",
+      "description": "Stack of chemistry textbooks",
+      "imageUrl": "https://images.unsplash.com/photo-1583347976937-f62854614250?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjaGVtaXN0cnklMjB0ZXh0Ym9va3xlbnwwfHx8fDE3NTg4NDU0MTR8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "chemistry textbook"
+    },
+    {
+      "id": "product-12-3",
+      "description": "Chemistry formulas",
+      "imageUrl": "https://images.unsplash.com/photo-1662962160191-82e99c70d3d9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjaGVtaXN0cnklMjB0ZXh0Ym9va3xlbnwwfHx8fDE3NTg4NDU0MTR8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "chemistry textbook"
+    },
+    {
+      "id": "product-12-4",
+      "description": "Chemistry lab",
+      "imageUrl": "https://images.unsplash.com/photo-1663660134340-ef69686ceb34?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxjaGVtaXN0cnklMjB0ZXh0Ym9va3xlbnwwfHx8fDE3NTg4NDU0MTR8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "chemistry textbook"
+    },
+    {
+      "id": "product-12-5",
+      "description": "Student studying chemistry",
+      "imageUrl": "https://images.unsplash.com/photo-1623997238164-e8ce5bf4511d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjaGVtaXN0cnklMjB0ZXh0Ym9va3xlbnwwfHx8fDE3NTg4NDU0MTR8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "chemistry textbook"
+    },
+    {
+      "id": "product-13-1",
+      "description": "Graphing calculator",
+      "imageUrl": "https://images.unsplash.com/photo-1596708347116-c734bbd8c89b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxncmFwaGluZyUyMGNhbGN1bGF0b3J8ZW58MHx8fHwxNzE4MTAzNjM4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "graphing calculator"
+    },
+    {
+      "id": "product-13-2",
+      "description": "Close up of graphing calculator",
+      "imageUrl": "https://images.unsplash.com/photo-1526045612-6577E575245a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxncmFwaGluZyUyMGNhbGN1bGF0b3J8ZW58MHx8fHwxNzE4MTAzNjM4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "graphing calculator"
+    },
+    {
+      "id": "product-13-3",
+      "description": "Graphing calculator screen",
+      "imageUrl": "https://images.unsplash.com/photo-1609697299491-69d2d5ed2c36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxncmFwaGluZyUyMGNhbGN1bGF0b3J8ZW58MHx8fHwxNzU4ODQ3NDU3fDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "graphing calculator"
+    },
+    {
+      "id": "product-13-4",
+      "description": "Graphing calculator buttons",
+      "imageUrl": "https://images.unsplash.com/photo-1711344397160-b23d5deaa012?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxncmFwaGluZyUyMGNhbGN1bGF0b3J8ZW58MHx8fHwxNzU4ODQ3NDU3fDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "graphing calculator"
+    },
+    {
+      "id": "product-13-5",
+      "description": "Student using graphing calculator",
+      "imageUrl": "https://images.unsplash.com/photo-1758626445322-d5dda0431094?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxncmFwaGluZyUyMGNhbGN1bGF0b3J8ZW58MHx8fHwxNzU4ODQ3NDU3fDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "graphing calculator"
+    },
+    {
+      "id": "product-14-1",
+      "description": "Paperback book, The Great Gatsby",
+      "imageUrl": "https://images.unsplash.com/photo-1544947950-fa07a98d237f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxib29rfGVufDB8fHx8MTcxODEwMzY3NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "book"
+    },
+    {
+      "id": "product-14-2",
+      "description": "Stack of books with The Great Gatsby",
+      "imageUrl": "https://images.unsplash.com/photo-1550399105-c4db5fb85c18?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxib29rfGVufDB8fHx8MTcxODEwMzY3NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "book"
+    },
+    {
+      "id": "product-14-3",
+      "description": "Open book",
+      "imageUrl": "https://images.unsplash.com/photo-1544947950-fa07a98d237f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxib29rfGVufDB8fHx8MTc1ODgyNDIxMHww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "book"
+    },
+    {
+      "id": "product-14-4",
+      "description": "Books on a shelf",
+      "imageUrl": "https://images.unsplash.com/photo-1532012197267-da84d127e765?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxib29rfGVufDB8fHx8MTc1ODgyNDIxMHww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "book"
+    },
+    {
+      "id": "product-14-5",
+      "description": "Person reading a book",
+      "imageUrl": "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxib29rfGVufDB8fHx8MTc1ODgyNDIxMHww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "book"
+    },
+    {
+      "id": "product-15-1",
+      "description": "Noise-cancelling headphones",
+      "imageUrl": "https://images.unsplash.com/photo-1505238680356-667803448bb6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxoZWFkcGhvbmVzfGVufDB8fHx8MTcxODEwMzc0MHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "headphones"
+    },
+    {
+      "id": "product-15-2",
+      "description": "Headphones on a desk",
+      "imageUrl": "https://images.unsplash.com/photo-1546435770-a3e426bf4022?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxoZWFkcGhvbmVzfGVufDB8fHx8MTcxODEwMzc0MHww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "headphones"
+    },
+    {
+      "id": "product-15-3",
+      "description": "Person wearing headphones",
+      "imageUrl": "https://images.unsplash.com/photo-1618336752889-698943108d53?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxoZWFkcGhvbmVzfGVufDB8fHx8MTcxODEwMzc0MHww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "headphones"
+    },
+    {
+      "id": "product-15-4",
+      "description": "Headphones case",
+      "imageUrl": "https://images.unsplash.com/photo-1545127398-14699f92334b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxoZWFkcGhvbmVzfGVufDB8fHx8MTc1ODc4OTc4M3ww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "headphones"
+    },
+    {
+      "id": "product-15-5",
+      "description": "Headphones ear cup",
+      "imageUrl": "https://images.unsplash.com/photo-1583394838336-acd977736f90?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxoZWFkcGhvbmVzfGVufDB8fHx8MTc1ODc4OTc4M3ww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "headphones"
+    },
+    {
+      "id": "product-16-1",
+      "description": "Hardcover copy of Dune",
+      "imageUrl": "https://images.unsplash.com/photo-1593369688775-80e143526955?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzY2klMjBmaSUyMGJvb2t8ZW58MHx8fHwxNzE4MTAzNzg2fDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "sci-fi book"
+    },
+    {
+      "id": "product-16-2",
+      "description": "Open sci-fi book with galaxy",
+      "imageUrl": "https://images.unsplash.com/photo-1758655212547-0f4f8554ddd6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzY2ktZmklMjBib29rfGVufDB8fHx8MTc1ODc3OTcyNXww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "sci-fi book"
+    },
+    {
+      "id": "product-16-3",
+      "description": "Stack of sci-fi books",
+      "imageUrl": "https://images.unsplash.com/photo-1698954634383-eba274a1b1c7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzY2ktZmklMjBib29rfGVufDB8fHx8MTc1ODc3OTcyNXww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "sci-fi book"
+    },
+    {
+      "id": "product-16-4",
+      "description": "Sci-fi book cover art",
+      "imageUrl": "https://images.unsplash.com/photo-1716346752361-242bc4f1fc08?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8c2NpLWZpJTIwYm9va3xlbnwwfHx8fDE3NTg3Nzk3MjV8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "sci-fi book"
+    },
+    {
+      "id": "product-16-5",
+      "description": "Person reading a sci-fi book",
+      "imageUrl": "https://images.unsplash.com/photo-1698954634383-eba274a1b1c7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzY2ktZmklMjBib29rfGVufDB8fHx8MTc1ODc3OTcyNXww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "sci-fi book"
+    },
+    {
+      "id": "product-17-1",
+      "description": "Portable power bank",
+      "imageUrl": "https://images.unsplash.com/photo-1588857459184-536ac998246e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwb3dlciUyMGJhbmt8ZW58MHx8fHwxNzE4MTA0MDM0fDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "power bank"
+    },
+    {
+      "id": "product-17-2",
+      "description": "Power bank charging a phone",
+      "imageUrl": "https://images.unsplash.com/photo-1610497541113-a4005b5420c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwb3dlciUyMGJhbmt8ZW58MHx8fHwxNzE4MTA0MDM0fDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "power bank"
+    },
+    {
+      "id": "product-17-3",
+      "description": "Multiple power banks",
+      "imageUrl": "https://images.unsplash.com/photo-1585995603413-eb35b5f4a50b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwb3dlciUyMGJhbmt8ZW58MHx8fHwxNzU4ODM1MDMxfDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "power bank"
+    },
+    {
+      "id": "product-17-4",
+      "description": "Power bank ports",
+      "imageUrl": "https://images.unsplash.com/photo-1644571669401-9ab344866592?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwb3dlciUyMGJhbmt8ZW58MHx8fHwxNzU4ODM1MDMxfDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "power bank"
+    },
+    {
+      "id": "product-17-5",
+      "description": "Person holding power bank",
+      "imageUrl": "https://images.unsplash.com/photo-1594843665794-446ce915d840?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwb3dlciUyMGJhbmt8ZW58MHx8fHwxNzU4ODM1MDMxfDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "power bank"
+    },
+    {
+      "id": "product-18-1",
+      "description": "Adjustable laptop stand",
+      "imageUrl": "https://images.unsplash.com/photo-1629088285923-3a0595e55b6c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxsYXB0b3AlMjBzdGFuZHxlbnwwfHx8fDE3MTgxMDQxMDJ8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "laptop stand"
+    },
+    {
+      "id": "product-18-2",
+      "description": "Laptop on a stand",
+      "imageUrl": "https://images.unsplash.com/photo-1591011804279-00977878d6e1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxsYXB0b3AlMjBzdGFuZHxlbnwwfHx8fDE3MTgxMDQxMDJ8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "laptop stand"
+    },
+    {
+      "id": "product-18-3",
+      "description": "Side view of laptop stand",
+      "imageUrl": "https://images.unsplash.com/flagged/photo-1576697010739-6373b63f3204?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxsYXB0b3AlMjBzdGFuZHxlbnwwfHx8fDE3NTg4MTkzNTJ8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "laptop stand"
+    },
+    {
+      "id": "product-18-4",
+      "description": "Folded laptop stand",
+      "imageUrl": "https://images.unsplash.com/photo-1623251606108-512c7c4a3507?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxsYXB0b3AlMjBzdGFuZHxlbnwwfHx8fDE3NTg4MTkzNTJ8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "laptop stand"
+    },
+    {
+      "id": "product-18-5",
+      "description": "Person adjusting laptop stand",
+      "imageUrl": "https://images.unsplash.com/photo-1629893250402-bc171e8bbe4e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxsYXB0b3AlMjBzdGFuZHxlbnwwfHx8fDE3NTg4MTkzNTJ8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "laptop stand"
+    },
+    {
+      "id": "product-19-1",
+      "description": "Electric kettle",
+      "imageUrl": "https://images.unsplash.com/photo-1594380983196-932970a0492c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxrZXR0bGV8ZW58MHx8fHwxNzE4MTA0MTQwfDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "kettle"
+    },
+    {
+      "id": "product-19-2",
+      "description": "Kettle boiling water",
+      "imageUrl": "https://images.unsplash.com/photo-1616091461939-7419141e2a0f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxrZXR0bGV8ZW58MHx8fHwxNzE4MTA0MTQwfDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "kettle"
+    },
+    {
+      "id": "product-19-3",
+      "description": "Pouring water from a kettle",
+      "imageUrl": "https://images.unsplash.com/photo-1574775413043-51c7ba65cf94?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8a2V0dGxlfGVufDB8fHx8MTc1ODg0NzQ1N3ww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "kettle"
+    },
+    {
+      "id": "product-19-4",
+      "description": "Kettle on a kitchen counter",
+      "imageUrl": "https://images.unsplash.com/photo-1643114938504-370d9376e946?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxrZXR0bGV8ZW58MHx8fHwxNzU4ODQ3NDU3fDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "kettle"
+    },
+    {
+      "id": "product-19-5",
+      "description": "Kettle buttons",
+      "imageUrl": "https://images.unsplash.com/photo-1581348304131-9d03407316b7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxrZXR0bGV8ZW58MHx8fHwxNzU4ODQ3NDU3fDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "kettle"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/cmpe202-02-team-project-visionary-coders.iml" filepath="$PROJECT_DIR$/.idea/cmpe202-02-team-project-visionary-coders.iml" />
+      <module fileurl="file://$PROJECT_DIR$/frontendInitial/frontendInitial.iml" filepath="$PROJECT_DIR$/frontendInitial/frontendInitial.iml" />
+    </modules>
+  </component>
+</project>
