@@ -1,0 +1,36 @@
+export interface User {
+  id: string;
+  email: string;
+  name: string;
+  role: 'user' | 'admin';
+  createdAt: Date;
+}
+
+export interface AuthResponse {
+  success: boolean;
+  message: string;
+  token?: string;
+  user?: User;
+}
+
+export interface SignUpData {
+  email: string;
+  password: string;
+  confirmPassword: string;
+  name: string;
+  role?: 'user' | 'admin';
+}
+
+export interface SignInData {
+  email: string;
+  password: string;
+}
+
+export interface AuthContextType {
+  user: User | null;
+  isLoading: boolean;
+  signIn: (data: SignInData) => Promise<void>;
+  signUp: (data: SignUpData) => Promise<void>;
+  signOut: () => void;
+  isAuthenticated: boolean;
+}
