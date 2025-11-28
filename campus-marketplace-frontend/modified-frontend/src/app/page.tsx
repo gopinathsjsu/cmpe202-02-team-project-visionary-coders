@@ -2,10 +2,20 @@
 
 import Link from 'next/link';
 import { useAuth } from '@/contexts/AuthContext';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { listingAPI } from '@/lib/api';
+
+interface Listing {
+  id: number;
+  title: string;
+  price: string;
+  image: string;
+  seller: string;
+  condition: string;
+}
 
 export default function HomePage() {
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated } = useAuth();
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleQuickSearch = (e: React.FormEvent) => {
@@ -24,40 +34,33 @@ export default function HomePage() {
     { name: 'Sports', icon: '⚽', count: '60+' },
   ];
 
-  const recentListings = [
-    {
-      id: 1,
-      title: 'CMPE 202 Software Systems Engineering Textbook',
-      price: '$45',
-      image: '📖',
-      seller: 'John D.',
-      condition: 'Like New',
-    },
-    {
-      id: 2,
-      title: 'MacBook Pro 13" 2020 - Great Condition',
-      price: '$650',
-      image: '💻',
-      seller: 'Sarah M.',
-      condition: 'Good',
-    },
-    {
-      id: 3,
-      title: 'Scientific Calculator TI-84',
-      price: '$35',
-      image: '🔢',
-      seller: 'Mike R.',
-      condition: 'Like New',
-    },
-    {
-      id: 4,
-      title: 'Desk Lamp - LED with USB Port',
-      price: '$15',
-      image: '💡',
-      seller: 'Emily L.',
-      condition: 'New',
-    },
-  ];
+  const [recentListings, setRecentListings] = useState<Listing[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchListings = async () => {
+      try {
+        const data = await listingAPI.getListings();
+        // Map backend data to frontend format
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const mappedListings = data.map((item: any) => ({
+          id: item.id,
+          title: item.title,
+          price: `$${item.price}`,
+          image: item.photo_url || '📦',
+          seller: `Seller #${item.seller_id}`, // Backend only gives ID for now
+          condition: 'Good', // Backend doesn't have condition field yet
+        }));
+        setRecentListings(mappedListings);
+      } catch (error) {
+        console.error('Failed to fetch listings:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchListings();
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
@@ -83,7 +86,7 @@ export default function HomePage() {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Ask anything... e.g., 'Do you have a textbook for CMPE 202?'"
-                  className="w-full px-6 py-4 rounded-full text-gray-900 text-lg shadow-2xl focus:outline-none focus:ring-4 focus:ring-yellow-400"
+                  className="w-full px-6 py-4 rounded-full text-gray-900 text-lg shadow-2xl focus:outline-none focus:ring-4 focus:ring-yellow-400 bg-white placeholder-gray-400"
                 />
                 <button
                   type="submit"
@@ -133,157 +136,179 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Categories Section */}
+      {/* Group 1: Discovery Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-          Browse by Category
-        </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-          {categories.map((category) => (
-            <Link
-              key={category.name}
-              href={`/marketplace?category=${category.name.toLowerCase()}`}
-              className="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-2xl transition-all transform hover:scale-105 cursor-pointer"
-            >
-              <div className="text-5xl mb-3">{category.icon}</div>
-              <h3 className="font-semibold text-gray-900 mb-1">{category.name}</h3>
-              <p className="text-sm text-gray-500">{category.count} items</p>
-            </Link>
-          ))}
-        </div>
-      </div>
-
-      {/* Features Section */}
-      <div className="bg-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-            Why Choose Campus Marketplace?
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-3xl">🎓</span>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                Campus Only
-              </h3>
-              <p className="text-gray-600">
-                Exclusive to verified college students with .edu email addresses
-              </p>
+        <div className="bg-white/70 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/50 p-8 sm:p-12">
+          {/* Categories Section */}
+          <div className="mb-16">
+            <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+              Browse by Category
+            </h2>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+              {categories.map((category) => (
+                <Link
+                  key={category.name}
+                  href={`/marketplace?category=${category.name.toLowerCase()}`}
+                  className="bg-white/80 rounded-xl p-6 text-center transition-all cursor-pointer border border-transparent hover:border-indigo-200 hover:bg-white"
+                >
+                  <div className="text-5xl mb-3">{category.icon}</div>
+                  <h3 className="font-semibold text-gray-900 mb-1">{category.name}</h3>
+                  <p className="text-sm text-gray-500">{category.count} items</p>
+                </Link>
+              ))}
             </div>
+          </div>
 
-            <div className="text-center">
-              <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-3xl">💬</span>
+          {/* Recent Listings */}
+          <div className="bg-white/50 rounded-3xl p-6 sm:p-8">
+            <div className="flex justify-between items-center mb-8">
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900">Fresh Finds</h2>
+                <p className="text-gray-500 mt-1">Recently posted items from students near you</p>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                Easy Chat
-              </h3>
-              <p className="text-gray-600">
-                Built-in messaging to negotiate and arrange meetups
-              </p>
+              <Link
+                href="/marketplace"
+                className="text-indigo-600 hover:text-indigo-700 font-bold flex items-center gap-1 hover:gap-2 transition-all"
+              >
+                View All <span className="text-xl">→</span>
+              </Link>
             </div>
-
-            <div className="text-center">
-              <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-3xl">🤖</span>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                AI Search
-              </h3>
-              <p className="text-gray-600">
-                Natural language search powered by ChatGPT - just ask!
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-3xl">🛡️</span>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                Safe & Moderated
-              </h3>
-              <p className="text-gray-600">
-                Admin moderation and reporting system for safety
-              </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {isLoading ? (
+                <div className="col-span-full text-center py-12 text-gray-500">
+                  Loading fresh finds...
+                </div>
+              ) : (
+                recentListings.map((item) => (
+                  <div
+                    key={item.id}
+                    className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-2xl transition-all transform hover:-translate-y-1 border border-gray-100 group"
+                  >
+                    <div className="bg-gradient-to-br from-indigo-50 to-purple-50 h-48 flex items-center justify-center text-7xl group-hover:scale-105 transition-transform duration-300">
+                      {item.image}
+                    </div>
+                    <div className="p-5">
+                      <h3 className="font-bold text-gray-900 mb-2 line-clamp-2 text-lg group-hover:text-indigo-600 transition-colors">
+                        {item.title}
+                      </h3>
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="text-2xl font-extrabold text-indigo-600">
+                          {item.price}
+                        </span>
+                        <span className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full font-medium uppercase tracking-wide">
+                          {item.condition}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2 mb-4 text-sm text-gray-500">
+                        <div className="w-6 h-6 bg-indigo-100 rounded-full flex items-center justify-center text-xs font-bold text-indigo-600">
+                          {item.seller.charAt(0)}
+                        </div>
+                        {item.seller}
+                      </div>
+                      <button className="w-full bg-white border-2 border-indigo-600 text-indigo-600 hover:bg-indigo-600 hover:text-white font-bold py-2 rounded-lg transition-all duration-200">
+                        View Details
+                      </button>
+                    </div>
+                  </div>
+                ))
+              )}
             </div>
           </div>
         </div>
       </div>
 
-      {/* Recent Listings */}
+      {/* Group 2: Info Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="flex justify-between items-center mb-8">
-          <h2 className="text-3xl font-bold text-gray-900">Recent Listings</h2>
-          <Link
-            href="/marketplace"
-            className="text-indigo-600 hover:text-indigo-700 font-semibold"
-          >
-            View All →
-          </Link>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {recentListings.map((item) => (
-            <div
-              key={item.id}
-              className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all transform hover:scale-105"
-            >
-              <div className="bg-gradient-to-br from-indigo-100 to-purple-100 h-48 flex items-center justify-center text-7xl">
-                {item.image}
-              </div>
-              <div className="p-4">
-                <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2">
-                  {item.title}
-                </h3>
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-2xl font-bold text-indigo-600">
-                    {item.price}
-                  </span>
-                  <span className="text-sm text-gray-500">{item.condition}</span>
+        <div className="bg-white/70 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/50 p-8 sm:p-12">
+          {/* Features Section */}
+          <div className="mb-16">
+            <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+              Why Choose Campus Marketplace?
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="text-center p-6 bg-white/60 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-3xl">🎓</span>
                 </div>
-                <p className="text-sm text-gray-600">Seller: {item.seller}</p>
-                <button className="w-full mt-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-lg transition-colors">
-                  View Details
-                </button>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  Campus Only
+                </h3>
+                <p className="text-gray-600">
+                  Exclusive to verified college students with .edu email addresses
+                </p>
+              </div>
+
+              <div className="text-center p-6 bg-white/60 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-3xl">💬</span>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  Easy Chat
+                </h3>
+                <p className="text-gray-600">
+                  Built-in messaging to negotiate and arrange meetups
+                </p>
+              </div>
+
+              <div className="text-center p-6 bg-white/60 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-3xl">🤖</span>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  AI Search
+                </h3>
+                <p className="text-gray-600">
+                  Natural language search powered by ChatGPT - just ask!
+                </p>
+              </div>
+
+              <div className="text-center p-6 bg-white/60 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                <div className="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-3xl">🛡️</span>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  Safe & Moderated
+                </h3>
+                <p className="text-gray-600">
+                  Admin moderation and reporting system for safety
+                </p>
               </div>
             </div>
-          ))}
-        </div>
-      </div>
+          </div>
 
-      {/* How It Works */}
-      <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">How It Works</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="bg-white text-indigo-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
-                1
+          {/* How It Works */}
+          <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-3xl p-8 sm:p-12 shadow-lg">
+            <h2 className="text-3xl font-bold text-center mb-12">How It Works</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="text-center">
+                <div className="bg-white text-indigo-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+                  1
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Sign Up</h3>
+                <p className="text-indigo-100">
+                  Create your account with your college email address
+                </p>
               </div>
-              <h3 className="text-xl font-semibold mb-2">Sign Up</h3>
-              <p className="text-indigo-100">
-                Create your account with your college email address
-              </p>
-            </div>
 
-            <div className="text-center">
-              <div className="bg-white text-indigo-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
-                2
+              <div className="text-center">
+                <div className="bg-white text-indigo-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+                  2
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Post or Browse</h3>
+                <p className="text-indigo-100">
+                  List items to sell or search for what you need
+                </p>
               </div>
-              <h3 className="text-xl font-semibold mb-2">Post or Browse</h3>
-              <p className="text-indigo-100">
-                List items to sell or search for what you need
-              </p>
-            </div>
 
-            <div className="text-center">
-              <div className="bg-white text-indigo-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
-                3
+              <div className="text-center">
+                <div className="bg-white text-indigo-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+                  3
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Chat & Trade</h3>
+                <p className="text-indigo-100">
+                  Message sellers, negotiate, and complete your transaction
+                </p>
               </div>
-              <h3 className="text-xl font-semibold mb-2">Chat & Trade</h3>
-              <p className="text-indigo-100">
-                Message sellers, negotiate, and complete your transaction
-              </p>
             </div>
           </div>
         </div>

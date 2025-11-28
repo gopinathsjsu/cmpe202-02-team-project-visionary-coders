@@ -3,7 +3,8 @@ import Cookies from 'js-cookie';
 import { SignUpData, SignInData, AuthResponse, User } from '@/types/auth';
 
 // Configure axios instance
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
+// Configure axios instance
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
 const apiClient = axios.create({
   baseURL: API_URL,
@@ -26,36 +27,80 @@ export const authAPI = {
   // Sign up user
   signUp: async (data: SignUpData): Promise<AuthResponse> => {
     try {
-      const response = await apiClient.post<AuthResponse>('/auth/signup', data);
-      if (response.data.token) {
-        Cookies.set('auth_token', response.data.token, { expires: 7 });
+      // 1. Register
+      await apiClient.post('/auth/register', {
+        email: data.email,
+        password: data.password,
+        name: data.name,
+        role: 'buyer', // Default role or handle selection
+      });
+
+      // 2. Auto-login to get token
+      const loginResponse = await apiClient.post<{ access_token: string }>('/auth/login', {
+        username: data.email, // OAuth2 expects username form field usually, but let's check backend schema
+        email: data.email, // Our backend might expect email in JSON body
+        password: data.password,
+      });
+
+      const token = loginResponse.data.access_token;
+      if (token) {
+        Cookies.set('auth_token', token, { expires: 7 });
       }
-      return response.data;
-    } catch (error: any) {
-      throw new Error(error.response?.data?.message || 'Sign up failed');
+
+      // 3. Get user details
+      const userResponse = await apiClient.get<User>('/users/me');
+
+      return {
+        success: true,
+        message: 'Sign up successful',
+        token,
+        user: userResponse.data,
+      };
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Sign up failed');
     }
   },
 
   // Sign in user
   signIn: async (data: SignInData): Promise<AuthResponse> => {
     try {
-      const response = await apiClient.post<AuthResponse>('/auth/signin', data);
-      if (response.data.token) {
-        Cookies.set('auth_token', response.data.token, { expires: 7 });
+      const response = await apiClient.post<{ access_token: string }>('/auth/login', {
+        email: data.email,
+        password: data.password,
+      });
+
+      const token = response.data.access_token;
+      if (token) {
+        Cookies.set('auth_token', token, { expires: 7 });
       }
-      return response.data;
-    } catch (error: any) {
-      throw new Error(error.response?.data?.message || 'Sign in failed');
+
+      // Get user details
+      const userResponse = await apiClient.get<User>('/users/me');
+
+      return {
+        success: true,
+        message: 'Sign in successful',
+        token,
+        user: userResponse.data,
+      };
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Sign in failed');
     }
   },
 
   // Get current user
   getCurrentUser: async (): Promise<User> => {
     try {
-      const response = await apiClient.get<{ user: User }>('/auth/me');
-      return response.data.user;
-    } catch (error: any) {
-      throw new Error(error.response?.data?.message || 'Failed to get user');
+      const response = await apiClient.get<User>('/users/me');
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'An error occurred');
     }
   },
 
@@ -65,12 +110,27 @@ export const authAPI = {
   },
 
   // Verify token
-  verifyToken: async (token: string): Promise<boolean> => {
+  verifyToken: async (): Promise<boolean> => {
     try {
-      const response = await apiClient.post('/auth/verify', { token });
-      return response.data.valid;
+      // Backend doesn't have a specific verify endpoint, but we can try /users/me
+      await apiClient.get('/users/me');
+      return true;
     } catch {
       return false;
+    }
+  },
+};
+
+// Listing API functions
+export const listingAPI = {
+  getListings: async (params?: { q?: string; category?: string; min_price?: number; max_price?: number }) => {
+    try {
+      const response = await apiClient.get('/listings', { params });
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to fetch listings');
     }
   },
 };

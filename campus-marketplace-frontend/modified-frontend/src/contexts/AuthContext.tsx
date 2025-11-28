@@ -45,7 +45,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           router.push('/dashboard');
         }
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       throw error;
     } finally {
       setIsLoading(false);
@@ -65,7 +65,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           router.push('/dashboard');
         }
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       throw error;
     } finally {
       setIsLoading(false);

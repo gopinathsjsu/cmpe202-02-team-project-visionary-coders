@@ -16,7 +16,6 @@ export default function SignUpForm() {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
   } = useForm<SignUpFormData>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
@@ -29,8 +28,9 @@ export default function SignUpForm() {
       setError('');
       setIsSubmitting(true);
       await signUp(data);
-    } catch (err: any) {
-      setError(err.message || 'Failed to create account. Please try again.');
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : 'An error occurred';
+      setError(errorMessage || 'Failed to create account. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -47,7 +47,7 @@ export default function SignUpForm() {
             Use your college email address to register
           </p>
         </div>
-        
+
         <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
           {error && (
             <div className="rounded-md bg-red-50 p-4">

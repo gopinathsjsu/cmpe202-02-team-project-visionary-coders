@@ -18,9 +18,10 @@ def run():
         if not session.exec(select(Listing)).first():
             alice = session.exec(select(User).where(User.email=="alice@univ.edu")).one()
             items = [
-                Listing(title="CMPE 202 Textbook", description="Used, good condition", price=30.0, seller_id=alice.id, category=Category.textbooks),
-                Listing(title="Raspberry Pi 4", description="4GB RAM, barely used", price=50.0, seller_id=alice.id, category=Category.gadgets),
-                Listing(title="Desk Lamp", description="Bright LED lamp", price=12.0, seller_id=alice.id, category=Category.essentials),
+                Listing(title="CMPE 202 Software Systems Engineering Textbook", description="Used, good condition. Essential for the course.", price=45.0, seller_id=alice.id, category=Category.textbooks, photo_url="📖"),
+                Listing(title="MacBook Pro 13\" 2020 - Great Condition", description="8GB RAM, 256GB SSD. Works perfectly.", price=650.0, seller_id=alice.id, category=Category.gadgets, photo_url="💻"),
+                Listing(title="Scientific Calculator TI-84", description="Required for calculus and physics.", price=35.0, seller_id=alice.id, category=Category.gadgets, photo_url="🔢"),
+                Listing(title="Desk Lamp - LED with USB Port", description="Great for late night study sessions.", price=15.0, seller_id=alice.id, category=Category.essentials, photo_url="💡"),
             ]
             for it in items: session.add(it)
             session.commit()
