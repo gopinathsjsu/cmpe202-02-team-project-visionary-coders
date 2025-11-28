@@ -143,6 +143,16 @@ export const listingAPI = {
       throw new Error(err.response?.data?.detail || 'Failed to fetch listing details');
     }
   },
+  aiSearch: async (question: string) => {
+    try {
+      const response = await apiClient.post('/search/nl', { question });
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'AI Search failed');
+    }
+  },
 };
 
 export default apiClient;

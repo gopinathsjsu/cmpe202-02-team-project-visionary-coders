@@ -2,7 +2,7 @@ export interface User {
   id: string;
   email: string;
   name: string;
-  role: 'user' | 'admin';
+  role: 'buyer' | 'seller' | 'admin';
   createdAt: Date;
 }
 
@@ -18,7 +18,7 @@ export interface SignUpData {
   password: string;
   confirmPassword: string;
   name: string;
-  role?: 'user' | 'admin';
+  role?: 'buyer' | 'seller' | 'admin';
 }
 
 export interface SignInData {

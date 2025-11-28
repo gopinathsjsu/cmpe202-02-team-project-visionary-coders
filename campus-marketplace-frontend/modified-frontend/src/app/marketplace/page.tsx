@@ -22,11 +22,16 @@ function MarketplaceContent() {
     const fetchListings = async (query?: string, category?: string) => {
         setIsLoading(true);
         try {
-            const params: { q?: string; category?: string } = {};
-            if (query) params.q = query;
-            if (category) params.category = category;
-
-            const data = await listingAPI.getListings(params);
+            let data;
+            if (query) {
+                // Use AI Search for text queries
+                data = await listingAPI.aiSearch(query);
+            } else {
+                // Use standard filtering for category-only browsing
+                const params: { q?: string; category?: string } = {};
+                if (category) params.category = category;
+                data = await listingAPI.getListings(params);
+            }
             setListings(data);
         } catch (error) {
             console.error('Failed to fetch listings:', error);
@@ -116,7 +121,7 @@ function MarketplaceContent() {
                             <Link
                                 key={item.id}
                                 href={`/listings/${item.id}`}
-                                className="bg-white rounded-2xl p-4 border border-gray-100 hover:shadow-lg transition-all group flex flex-col h-full"
+                                className="bg-white rounded-2xl p-4 border border-gray-100 hover:border-gray-200 transition-all group flex flex-col h-full"
                             >
                                 <div className="bg-gray-50 rounded-xl h-48 mb-4 flex items-center justify-center relative overflow-hidden">
                                     {item.photo_url ? (

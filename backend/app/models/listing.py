@@ -7,6 +7,9 @@ class Category(str, Enum):
     textbooks = "textbooks"
     gadgets = "gadgets"
     essentials = "essentials"
+    furniture = "furniture"
+    clothing = "clothing"
+    sports = "sports"
     none = "none"
 
 class Listing(SQLModel, table=True):
