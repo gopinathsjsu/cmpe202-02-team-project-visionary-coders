@@ -180,9 +180,10 @@ export default function HomePage() {
                 </div>
               ) : (
                 recentListings.map((item) => (
-                  <div
+                  <Link
                     key={item.id}
-                    className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-2xl transition-all transform hover:-translate-y-1 border border-gray-100 group"
+                    href={`/listings/${item.id}`}
+                    className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-2xl transition-all transform hover:-translate-y-1 border border-gray-100 group block"
                   >
                     <div className="bg-gradient-to-br from-indigo-50 to-purple-50 h-48 flex items-center justify-center text-7xl group-hover:scale-105 transition-transform duration-300">
                       {item.image}
@@ -205,11 +206,11 @@ export default function HomePage() {
                         </div>
                         {item.seller}
                       </div>
-                      <button className="w-full bg-white border-2 border-indigo-600 text-indigo-600 hover:bg-indigo-600 hover:text-white font-bold py-2 rounded-lg transition-all duration-200">
+                      <div className="w-full bg-white border-2 border-indigo-600 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white font-bold py-2 rounded-lg transition-all duration-200 text-center">
                         View Details
-                      </button>
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 ))
               )}
             </div>

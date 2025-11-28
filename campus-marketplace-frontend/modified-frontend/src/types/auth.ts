@@ -34,3 +34,14 @@ export interface AuthContextType {
   signOut: () => void;
   isAuthenticated: boolean;
 }
+
+export interface Listing {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  category: string;
+  is_sold: boolean;
+  photo_url?: string;
+  seller_id: number;
+}

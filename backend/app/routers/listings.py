@@ -26,6 +26,13 @@ def list_listings(q: Optional[str] = None, category: Optional[str] = None, min_p
     items = session.exec(stmt.order_by(Listing.created_at.desc())).all()
     return [ListingPublic(id=i.id, title=i.title, description=i.description, price=i.price, category=i.category.value, is_sold=i.is_sold, photo_url=i.photo_url, seller_id=i.seller_id) for i in items]
 
+@router.get("/{listing_id}", response_model=ListingPublic)
+def get_listing(listing_id: int, session: Session = Depends(get_session)):
+    listing = session.get(Listing, listing_id)
+    if not listing:
+        raise HTTPException(status_code=404, detail="Listing not found")
+    return ListingPublic(id=listing.id, title=listing.title, description=listing.description, price=listing.price, category=listing.category.value, is_sold=listing.is_sold, photo_url=listing.photo_url, seller_id=listing.seller_id)
+
 @router.post("", response_model=ListingPublic)
 def create_listing(payload: ListingCreate, user: User = Depends(require_role(Role.seller)), session: Session = Depends(get_session)):
     listing = Listing(**payload.model_dump(), seller_id=user.id, category=Category(payload.category))
