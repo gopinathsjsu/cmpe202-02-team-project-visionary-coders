@@ -18,12 +18,7 @@ export default function HomePage() {
   const { isAuthenticated } = useAuth();
   const [searchQuery, setSearchQuery] = useState('');
 
-  const handleQuickSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      window.location.href = `/marketplace?q=${encodeURIComponent(searchQuery)}`;
-    }
-  };
+
 
   const categories = [
     { name: 'Textbooks', icon: '📚', count: '150+' },
@@ -61,6 +56,13 @@ export default function HomePage() {
 
     fetchListings();
   }, []);
+
+  const handleQuickSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      window.location.href = `/marketplace?q=${encodeURIComponent(searchQuery)}`;
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
