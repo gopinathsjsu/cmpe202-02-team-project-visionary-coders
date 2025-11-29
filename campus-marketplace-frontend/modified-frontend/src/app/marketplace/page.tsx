@@ -58,10 +58,7 @@ function MarketplaceContent() {
 
                 {/* Header Section */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                    <div>
-                        <h1 className="text-2xl font-bold text-gray-900">Product List</h1>
-                        <p className="text-sm text-gray-500 mt-1">Track stock levels, availability, and restocking needs in real time.</p>
-                    </div>
+
                     <div className="flex items-center gap-3">
                         {(user?.role === 'admin' || user?.role === 'seller') && (
                             <Link
