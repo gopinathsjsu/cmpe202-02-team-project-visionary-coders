@@ -19,7 +19,7 @@ export default function SignUpForm() {
   } = useForm<SignUpFormData>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
-      role: 'user', // Default role is user
+      role: 'buyer', // Default role is buyer
     },
   });
 
@@ -136,8 +136,8 @@ export default function SignUpForm() {
                 id="role"
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               >
-                <option value="user">User</option>
-                <option value="admin">Admin</option>
+                <option value="buyer">Buyer</option>
+                <option value="seller">Seller</option>
               </select>
               {errors.role && (
                 <p className="mt-1 text-sm text-red-600">{errors.role.message}</p>

@@ -12,7 +12,7 @@ import os, uuid, shutil
 router = APIRouter()
 
 @router.get("", response_model=List[ListingPublic])
-def list_listings(q: Optional[str] = None, category: Optional[str] = None, min_price: Optional[float] = None, max_price: Optional[float] = None, session: Session = Depends(get_session)):
+def list_listings(q: Optional[str] = None, category: Optional[str] = None, min_price: Optional[float] = None, max_price: Optional[float] = None, seller_id: Optional[int] = None, session: Session = Depends(get_session)):
     stmt = select(Listing)
     if q:
         like = f"%{q.lower()}%"
@@ -23,6 +23,8 @@ def list_listings(q: Optional[str] = None, category: Optional[str] = None, min_p
         stmt = stmt.where(Listing.price >= min_price)
     if max_price is not None:
         stmt = stmt.where(Listing.price <= max_price)
+    if seller_id is not None:
+        stmt = stmt.where(Listing.seller_id == seller_id)
     items = session.exec(stmt.order_by(Listing.created_at.desc())).all()
     return [ListingPublic(id=i.id, title=i.title, description=i.description, price=i.price, category=i.category.value, is_sold=i.is_sold, photo_url=i.photo_url, seller_id=i.seller_id) for i in items]
 
@@ -35,7 +37,7 @@ def get_listing(listing_id: int, session: Session = Depends(get_session)):
 
 @router.post("", response_model=ListingPublic)
 def create_listing(payload: ListingCreate, user: User = Depends(require_role(Role.seller)), session: Session = Depends(get_session)):
-    listing = Listing(**payload.model_dump(), seller_id=user.id, category=Category(payload.category))
+    listing = Listing(**payload.model_dump(exclude={"category"}), seller_id=user.id, category=Category(payload.category))
     session.add(listing); session.commit(); session.refresh(listing)
     return ListingPublic(id=listing.id, title=listing.title, description=listing.description, price=listing.price, category=listing.category.value, is_sold=listing.is_sold, photo_url=listing.photo_url, seller_id=listing.seller_id)
 

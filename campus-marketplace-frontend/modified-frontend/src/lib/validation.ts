@@ -17,7 +17,7 @@ export const collegeEmailSchema = z
   .refine(
     (email) => {
       const domain = email.split('@')[1]?.toLowerCase();
-      return VALID_COLLEGE_DOMAINS.some(collegeDomain => 
+      return VALID_COLLEGE_DOMAINS.some(collegeDomain =>
         domain === collegeDomain || domain?.endsWith(`.${collegeDomain}`)
       );
     },
@@ -38,7 +38,7 @@ export const signUpSchema = z.object({
     .regex(/[0-9]/, 'Password must contain at least one number')
     .regex(/[^A-Za-z0-9]/, 'Password must contain at least one special character'),
   confirmPassword: z.string(),
-  role: z.enum(['user', 'admin']).optional(),
+  role: z.enum(['buyer', 'seller', 'admin']).optional(),
 }).refine((data) => data.password === data.confirmPassword, {
   message: "Passwords don't match",
   path: ['confirmPassword'],
@@ -56,7 +56,7 @@ export type SignInFormData = z.infer<typeof signInSchema>;
 // Utility function to check if email is from a college domain
 export const isCollegeEmail = (email: string): boolean => {
   const domain = email.split('@')[1]?.toLowerCase();
-  return VALID_COLLEGE_DOMAINS.some(collegeDomain => 
+  return VALID_COLLEGE_DOMAINS.some(collegeDomain =>
     domain === collegeDomain || domain?.endsWith(`.${collegeDomain}`)
   );
 };

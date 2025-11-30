@@ -111,12 +111,14 @@ export default function HomePage() {
                 >
                   Browse Marketplace
                 </Link>
-                <Link
-                  href="/listings/create"
-                  className="px-8 py-4 bg-yellow-400 text-gray-900 font-bold rounded-full shadow-lg hover:bg-yellow-500 transition-all transform hover:scale-105"
-                >
-                  + Sell Something
-                </Link>
+                {(useAuth().user?.role === 'admin' || useAuth().user?.role === 'seller') && (
+                  <Link
+                    href={useAuth().user?.role === 'admin' ? "/admin/add-product" : "/listings/create"}
+                    className="px-8 py-4 bg-yellow-400 text-gray-900 font-bold rounded-full shadow-lg hover:bg-yellow-500 transition-all transform hover:scale-105"
+                  >
+                    + Sell Something
+                  </Link>
+                )}
               </div>
             ) : (
               <div className="flex justify-center gap-4 flex-wrap">

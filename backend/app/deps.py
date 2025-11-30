@@ -17,7 +17,9 @@ def get_current_user(token: str = Depends(oauth2_scheme), session: Session = Dep
 
 def require_role(role: Role):
     def wrapper(user: User = Depends(get_current_user)):
-        if user.role != role and user.role != Role.admin:
+        if user.role == Role.admin:
+            return user
+        if user.role != role:
             raise HTTPException(status_code=403, detail="Insufficient permissions")
         return user
     return wrapper

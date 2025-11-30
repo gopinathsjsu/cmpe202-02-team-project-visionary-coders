@@ -19,24 +19,24 @@ export default function AdminDashboardPage() {
                 Administrator
               </span>
             </div>
-            
+
             <div className="border-t border-gray-200 pt-4 mt-4">
               <dl className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2">
                 <div className="sm:col-span-1">
                   <dt className="text-sm font-medium text-gray-500">Full name</dt>
                   <dd className="mt-1 text-sm text-gray-900">{user?.name}</dd>
                 </div>
-                
+
                 <div className="sm:col-span-1">
                   <dt className="text-sm font-medium text-gray-500">Email address</dt>
                   <dd className="mt-1 text-sm text-gray-900">{user?.email}</dd>
                 </div>
-                
+
                 <div className="sm:col-span-1">
                   <dt className="text-sm font-medium text-gray-500">Role</dt>
                   <dd className="mt-1 text-sm text-gray-900 capitalize">{user?.role}</dd>
                 </div>
-                
+
                 <div className="sm:col-span-1">
                   <dt className="text-sm font-medium text-gray-500">Admin since</dt>
                   <dd className="mt-1 text-sm text-gray-900">
@@ -62,7 +62,7 @@ export default function AdminDashboardPage() {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="bg-green-50 p-4 rounded-lg">
                   <div className="flex items-center justify-between">
                     <div>
@@ -76,7 +76,7 @@ export default function AdminDashboardPage() {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="bg-yellow-50 p-4 rounded-lg">
                   <div className="flex items-center justify-between">
                     <div>
@@ -90,7 +90,7 @@ export default function AdminDashboardPage() {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="bg-purple-50 p-4 rounded-lg">
                   <div className="flex items-center justify-between">
                     <div>
@@ -114,31 +114,36 @@ export default function AdminDashboardPage() {
                   <h3 className="text-lg font-medium text-gray-900">Manage Users</h3>
                   <p className="mt-2 text-sm text-gray-600">View, edit, and manage user accounts</p>
                 </button>
-                
+
                 <button className="bg-white border-2 border-indigo-200 hover:border-indigo-400 p-4 rounded-lg text-left transition-colors">
                   <h3 className="text-lg font-medium text-gray-900">Course Management</h3>
                   <p className="mt-2 text-sm text-gray-600">Create and manage courses and content</p>
                 </button>
-                
+
                 <button className="bg-white border-2 border-indigo-200 hover:border-indigo-400 p-4 rounded-lg text-left transition-colors">
                   <h3 className="text-lg font-medium text-gray-900">Reports & Analytics</h3>
                   <p className="mt-2 text-sm text-gray-600">View system reports and analytics</p>
                 </button>
-                
+
                 <button className="bg-white border-2 border-indigo-200 hover:border-indigo-400 p-4 rounded-lg text-left transition-colors">
                   <h3 className="text-lg font-medium text-gray-900">System Settings</h3>
                   <p className="mt-2 text-sm text-gray-600">Configure system-wide settings</p>
                 </button>
-                
+
                 <button className="bg-white border-2 border-indigo-200 hover:border-indigo-400 p-4 rounded-lg text-left transition-colors">
                   <h3 className="text-lg font-medium text-gray-900">Email Management</h3>
                   <p className="mt-2 text-sm text-gray-600">Manage college email domains</p>
                 </button>
-                
+
                 <button className="bg-white border-2 border-indigo-200 hover:border-indigo-400 p-4 rounded-lg text-left transition-colors">
                   <h3 className="text-lg font-medium text-gray-900">Audit Logs</h3>
                   <p className="mt-2 text-sm text-gray-600">View system activity and audit logs</p>
                 </button>
+
+                <a href="/admin/add-product" className="bg-white border-2 border-indigo-200 hover:border-indigo-400 p-4 rounded-lg text-left transition-colors block">
+                  <h3 className="text-lg font-medium text-gray-900">Add Product</h3>
+                  <p className="mt-2 text-sm text-gray-600">Create a new product listing</p>
+                </a>
               </div>
             </div>
           </div>

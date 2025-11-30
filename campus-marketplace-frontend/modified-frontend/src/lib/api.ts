@@ -32,7 +32,7 @@ export const authAPI = {
         email: data.email,
         password: data.password,
         name: data.name,
-        role: 'buyer', // Default role or handle selection
+        role: data.role,
       });
 
       // 2. Auto-login to get token
@@ -123,7 +123,7 @@ export const authAPI = {
 
 // Listing API functions
 export const listingAPI = {
-  getListings: async (params?: { q?: string; category?: string; min_price?: number; max_price?: number }) => {
+  getListings: async (params?: { q?: string; category?: string; min_price?: number; max_price?: number; seller_id?: number }) => {
     try {
       const response = await apiClient.get('/listings', { params });
       return response.data;
@@ -151,6 +151,32 @@ export const listingAPI = {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const err = error as any;
       throw new Error(err.response?.data?.detail || 'AI Search failed');
+    }
+  },
+  createListing: async (data: any) => {
+    try {
+      const response = await apiClient.post('/listings', data);
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to create listing');
+    }
+  },
+  uploadPhoto: async (file: File) => {
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      const response = await apiClient.post('/listings/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to upload photo');
     }
   },
 };
