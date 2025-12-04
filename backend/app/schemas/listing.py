@@ -25,3 +25,19 @@ class ListingPublic(BaseModel):
     is_sold: bool
     photo_url: Optional[str] = None
     seller_id: int
+
+class SellerInfo(BaseModel):
+    id: int
+    name: str
+    email: str
+
+class ListingWithSeller(BaseModel):
+    id: int
+    title: str
+    description: str
+    price: float
+    category: str
+    is_sold: bool
+    photo_url: Optional[str] = None
+    seller_id: int
+    seller: SellerInfo

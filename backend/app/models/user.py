@@ -11,7 +11,7 @@ class User(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     email: str = Field(index=True, unique=True)
     name: str
-    role: Role
+    role: str = Field(default="buyer")  # Comma-separated roles: "buyer,seller" or "admin"
     hashed_password: str
     # relationships
     listings: List["Listing"] = Relationship(back_populates="seller")

@@ -5,7 +5,7 @@ from app.db.session import get_session
 from app.deps import get_current_user, require_role
 from app.models.user import Role, User
 from app.models.listing import Listing, Category
-from app.schemas.listing import ListingCreate, ListingUpdate, ListingPublic
+from app.schemas.listing import ListingCreate, ListingUpdate, ListingPublic, ListingWithSeller, SellerInfo
 from app.core.config import settings
 import os, uuid, shutil
 
@@ -28,12 +28,30 @@ def list_listings(q: Optional[str] = None, category: Optional[str] = None, min_p
     items = session.exec(stmt.order_by(Listing.created_at.desc())).all()
     return [ListingPublic(id=i.id, title=i.title, description=i.description, price=i.price, category=i.category.value, is_sold=i.is_sold, photo_url=i.photo_url, seller_id=i.seller_id) for i in items]
 
-@router.get("/{listing_id}", response_model=ListingPublic)
+@router.get("/{listing_id}", response_model=ListingWithSeller)
 def get_listing(listing_id: int, session: Session = Depends(get_session)):
     listing = session.get(Listing, listing_id)
     if not listing:
         raise HTTPException(status_code=404, detail="Listing not found")
-    return ListingPublic(id=listing.id, title=listing.title, description=listing.description, price=listing.price, category=listing.category.value, is_sold=listing.is_sold, photo_url=listing.photo_url, seller_id=listing.seller_id)
+    
+    # Fetch seller information
+    seller = session.get(User, listing.seller_id)
+    if not seller:
+        raise HTTPException(status_code=404, detail="Seller not found")
+    
+    seller_info = SellerInfo(id=seller.id, name=seller.name, email=seller.email)
+    
+    return ListingWithSeller(
+        id=listing.id,
+        title=listing.title,
+        description=listing.description,
+        price=listing.price,
+        category=listing.category.value,
+        is_sold=listing.is_sold,
+        photo_url=listing.photo_url,
+        seller_id=listing.seller_id,
+        seller=seller_info
+    )
 
 @router.post("", response_model=ListingPublic)
 def create_listing(payload: ListingCreate, user: User = Depends(require_role(Role.seller)), session: Session = Depends(get_session)):

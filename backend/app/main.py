@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from app.core.config import settings
 from app.db.session import create_db_and_tables
+from app.db.seed_data import run as seed_db
 from app.routers import auth, users, listings, chat, admin, search
 from app.services.chat_manager import manager
 
@@ -29,6 +30,7 @@ app.include_router(search.router, prefix="/search", tags=["Search"])
 @app.on_event("startup")
 def on_startup():
     create_db_and_tables()
+    seed_db()
 
 # WebSocket endpoint for chat
 @app.websocket("/ws/chat/{room_id}")
