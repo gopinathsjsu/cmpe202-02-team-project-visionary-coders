@@ -14,4 +14,4 @@ class User(SQLModel, table=True):
     role: str = Field(default="buyer")  # Comma-separated roles: "buyer,seller" or "admin"
     hashed_password: str
     # relationships
-    listings: List["Listing"] = Relationship(back_populates="seller")
+    listings: List["Listing"] = Relationship(back_populates="seller", sa_relationship_kwargs={"cascade": "all, delete-orphan"})

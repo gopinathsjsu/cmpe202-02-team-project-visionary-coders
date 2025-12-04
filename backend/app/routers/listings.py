@@ -4,7 +4,7 @@ from sqlmodel import Session, select
 from app.db.session import get_session
 from app.deps import get_current_user, require_role
 from app.models.user import Role, User
-from app.models.listing import Listing, Category
+from app.models.listing import Listing, Category, ListingStatus
 from app.schemas.listing import ListingCreate, ListingUpdate, ListingPublic, ListingWithSeller, SellerInfo
 from app.core.config import settings
 import os, uuid, shutil
@@ -12,8 +12,13 @@ import os, uuid, shutil
 router = APIRouter()
 
 @router.get("", response_model=List[ListingPublic])
-def list_listings(q: Optional[str] = None, category: Optional[str] = None, min_price: Optional[float] = None, max_price: Optional[float] = None, seller_id: Optional[int] = None, session: Session = Depends(get_session)):
+def list_listings(q: Optional[str] = None, category: Optional[str] = None, min_price: Optional[float] = None, max_price: Optional[float] = None, seller_id: Optional[int] = None, status: Optional[str] = "approved", session: Session = Depends(get_session)):
     stmt = select(Listing)
+    if status:
+        # If status is "all", don't filter by status (useful for admin or specific views)
+        if status != "all":
+             stmt = stmt.where(Listing.status == ListingStatus(status))
+    
     if q:
         like = f"%{q.lower()}%"
         stmt = stmt.where((Listing.title.ilike(like)) | (Listing.description.ilike(like)))

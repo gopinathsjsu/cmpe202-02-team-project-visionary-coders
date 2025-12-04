@@ -62,49 +62,14 @@ export const authAPI = {
         Cookies.set('auth_token', token, { expires: 7 });
       }
 
-      // Extract user info from email in token (decode JWT)
-      try {
-        const parts = token.split('.');
-        if (parts.length === 3) {
-          const payload = JSON.parse(atob(parts[1]));
-          const email = payload.sub;
-          return {
-            success: true,
-            message: 'Sign in successful',
-            token,
-            user: {
-              id: '1', // Default ID
-              email,
-              name: email.split('@')[0], // Use email prefix as name
-              role: 'buyer',
-            },
-          };
-        }
-      } catch (e) {
-        // Fall back to returning basic user info
-        return {
-          success: true,
-          message: 'Sign in successful',
-          token,
-          user: {
-            id: '1',
-            email: data.email,
-            name: data.email.split('@')[0],
-            role: 'buyer',
-          },
-        };
-      }
+      // Fetch user details from backend
+      const userResponse = await apiClient.get<User>('/users/me');
 
       return {
         success: true,
         message: 'Sign in successful',
         token,
-        user: {
-          id: '1',
-          email: data.email,
-          name: data.email.split('@')[0],
-          role: 'buyer',
-        },
+        user: userResponse.data,
       };
     } catch (error: unknown) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -120,25 +85,9 @@ export const authAPI = {
       if (!token) {
         throw new Error('No token found');
       }
-      
-      // Extract user info from JWT token
-      try {
-        const parts = token.split('.');
-        if (parts.length === 3) {
-          const payload = JSON.parse(atob(parts[1]));
-          const email = payload.sub;
-          return {
-            id: '1',
-            email,
-            name: email.split('@')[0],
-            role: 'buyer',
-          };
-        }
-      } catch (e) {
-        throw new Error('Invalid token');
-      }
-      
-      throw new Error('Failed to parse token');
+
+      const response = await apiClient.get<User>('/users/me');
+      return response.data;
     } catch (error: unknown) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const err = error as any;
@@ -325,6 +274,75 @@ export const chatAPI = {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const err = error as any;
       throw new Error(err.response?.data?.detail || 'Failed to delete chat room');
+    }
+  },
+};
+
+// Admin API functions
+export const adminAPI = {
+  getSummary: async () => {
+    try {
+      const response = await apiClient.get('/admin/summary');
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to fetch admin summary');
+    }
+  },
+
+  getUsers: async () => {
+    try {
+      const response = await apiClient.get('/admin/users');
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to fetch users');
+    }
+  },
+
+  deleteUser: async (id: number) => {
+    try {
+      const response = await apiClient.delete(`/admin/users/${id}`);
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to delete user');
+    }
+  },
+
+  getPendingListings: async () => {
+    try {
+      const response = await apiClient.get('/admin/listings/pending');
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to fetch pending listings');
+    }
+  },
+
+  approveListing: async (id: number) => {
+    try {
+      const response = await apiClient.patch(`/admin/listings/${id}/approve`);
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to approve listing');
+    }
+  },
+
+  rejectListing: async (id: number) => {
+    try {
+      const response = await apiClient.patch(`/admin/listings/${id}/reject`);
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to reject listing');
     }
   },
 };

@@ -10,7 +10,7 @@ router = APIRouter()
 
 @router.get("/me", response_model=UserPublic)
 def me(user: User = Depends(get_current_user)):
-    return UserPublic(id=user.id, email=user.email, name=user.name, role=user.role.value)
+    return UserPublic(id=user.id, email=user.email, name=user.name, role=user.role)
 
 @router.put("/me", response_model=UserPublic)
 def update_me(user_update: UserUpdate, current_user: User = Depends(get_current_user), session: Session = Depends(get_session)):

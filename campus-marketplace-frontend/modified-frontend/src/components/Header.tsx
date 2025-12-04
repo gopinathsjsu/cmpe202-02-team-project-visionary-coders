@@ -29,17 +29,17 @@ export default function Header() {
       };
 
       fetchChatCount();
-      
+
       // Listen for chat viewed event to update count
       const handleChatViewed = () => {
         fetchChatCount();
       };
-      
+
       globalThis.addEventListener('chatViewed', handleChatViewed);
-      
+
       // Refresh chat count every 30 seconds
       const interval = setInterval(fetchChatCount, 30000);
-      
+
       return () => {
         clearInterval(interval);
         globalThis.removeEventListener('chatViewed', handleChatViewed);
@@ -145,9 +145,35 @@ export default function Header() {
                 </span>
               </Link>
 
+              {/* Admin Panel Icon */}
+              {user.role === 'admin' && (
+                <Link
+                  href="/admin/dashboard"
+                  className="relative group p-2 rounded-full hover:bg-white/10 transition-colors"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6 text-white hover:text-cyan-400 transition-colors"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"
+                    />
+                  </svg>
+                  <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-gray-700 text-white text-sm rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                    Admin Panel
+                  </span>
+                </Link>
+              )}
+
               {/* Chat Icon */}
-              <Link 
-                href="/chat" 
+              <Link
+                href="/chat"
                 className="relative group p-2 rounded-full hover:bg-white/10 transition-colors"
               >
                 <svg
@@ -176,7 +202,7 @@ export default function Header() {
 
               {/* Profile Dropdown */}
               <div className="relative" ref={profileRef}>
-                <button 
+                <button
                   onClick={() => setIsProfileOpen(!isProfileOpen)}
                   className="w-11 h-11 rounded-full bg-cyan-500 flex items-center justify-center text-slate-900 font-bold text-base cursor-pointer hover:shadow-lg hover:shadow-cyan-500/50 transition-all hover:scale-110"
                 >
@@ -192,11 +218,11 @@ export default function Header() {
                         <p className="font-bold text-xl text-white truncate">{user.name}</p>
                         <p className="text-base text-white/70 truncate mt-1">{user.email}</p>
                       </div>
-                      
+
                       {/* Action Buttons */}
                       <div className="px-2 py-3 space-y-1">
-                        <Link 
-                          href="/profile/view" 
+                        <Link
+                          href="/profile/view"
                           onClick={() => setIsProfileOpen(false)}
                           className="flex items-center gap-3 w-full text-left px-4 py-3 text-base text-white hover:bg-white/15 transition-colors font-medium rounded-lg"
                         >
@@ -216,9 +242,9 @@ export default function Header() {
                           </svg>
                           <span>View Profile</span>
                         </Link>
-                        
-                        <Link 
-                          href="/profile/edit" 
+
+                        <Link
+                          href="/profile/edit"
                           onClick={() => setIsProfileOpen(false)}
                           className="flex items-center gap-3 w-full text-left px-4 py-3 text-base text-white hover:bg-white/15 transition-colors font-medium rounded-lg"
                         >
@@ -239,8 +265,8 @@ export default function Header() {
                           <span>Update Profile</span>
                         </Link>
 
-                        <Link 
-                          href="/dashboard" 
+                        <Link
+                          href="/dashboard"
                           onClick={() => setIsProfileOpen(false)}
                           className="flex items-center gap-3 w-full text-left px-4 py-3 text-base text-white hover:bg-white/15 transition-colors font-medium rounded-lg"
                         >
@@ -264,10 +290,10 @@ export default function Header() {
 
                       {/* Divider */}
                       <div className="border-t border-white/20 my-2"></div>
-                      
+
                       {/* Sign Out Button */}
                       <div className="px-2">
-                        <button 
+                        <button
                           onClick={() => {
                             setIsProfileOpen(false);
                             signOut();
@@ -298,14 +324,14 @@ export default function Header() {
             </>
           ) : (
             <div className="flex items-center gap-3">
-              <Link 
-                href="/auth/signup" 
+              <Link
+                href="/auth/signup"
                 className="px-6 py-3 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold hover:from-cyan-600 hover:to-blue-700 transition-all shadow-lg hover:shadow-xl"
               >
                 Sign Up
               </Link>
-              <Link 
-                href="/auth/signin" 
+              <Link
+                href="/auth/signin"
                 className="px-6 py-3 rounded-lg text-white font-bold border border-white/30 hover:bg-white/10 transition-all"
               >
                 Sign In
