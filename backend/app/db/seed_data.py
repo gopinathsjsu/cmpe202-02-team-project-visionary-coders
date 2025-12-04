@@ -11,24 +11,10 @@ def run():
             admin = User(email="admin@univ.edu", name="Admin", role=Role.admin, hashed_password=get_password_hash("adminpass"))
             alice = User(email="alice@univ.edu", name="Alice", role=Role.buyer, hashed_password=get_password_hash("password123"))
             bob = User(email="bob@univ.edu", name="Bob", role=Role.buyer, hashed_password=get_password_hash("password123"))
-            session.add(admin); session.add(alice); session.add(bob)
+            tej_admin = User(email="tej123@sjsu.edu", name="Tej Kiran", role=Role.admin, hashed_password=get_password_hash("TejAdmin@123"))
+            session.add(admin); session.add(alice); session.add(bob); session.add(tej_admin)
             session.commit()
 
-<<<<<<< HEAD
-        # Ensure Tej's admin account exists
-        tej_admin = session.exec(select(User).where(User.email == "tej123@sjsu.edu")).first()
-        if not tej_admin:
-            tej_admin = User(
-                email="tej123@sjsu.edu",
-                name="Tej Kiran",
-                role=Role.admin,
-                hashed_password=get_password_hash("TejAdmin@123"),
-            )
-            session.add(tej_admin)
-            session.commit()
-
-=======
->>>>>>> origin/main
         # Listings
         if not session.exec(select(Listing)).first():
             alice = session.exec(select(User).where(User.email=="alice@univ.edu")).one()

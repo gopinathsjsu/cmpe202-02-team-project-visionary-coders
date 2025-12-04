@@ -1,6 +1,5 @@
 'use client';
 
-<<<<<<< HEAD
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import ProtectedRoute from '@/components/ProtectedRoute';
@@ -43,18 +42,15 @@ export default function AdminDashboardPage() {
     if (!summary?.generated_at) return '—';
     return new Date(summary.generated_at).toLocaleString();
   }, [summary]);
-=======
 import ProtectedRoute from '@/components/ProtectedRoute';
 import { useAuth } from '@/contexts/AuthContext';
 
 export default function AdminDashboardPage() {
   const { user } = useAuth();
->>>>>>> origin/main
 
   return (
     <ProtectedRoute requireAdmin={true}>
       <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-<<<<<<< HEAD
         <div className="max-w-7xl mx-auto space-y-8">
           <div className="bg-white shadow rounded-lg p-6">
             <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
@@ -71,7 +67,6 @@ export default function AdminDashboardPage() {
             </div>
 
             <div className="border-t border-gray-200 pt-4">
-=======
         <div className="max-w-7xl mx-auto">
           <div className="bg-white shadow rounded-lg p-6">
             <div className="flex items-center justify-between mb-6">
@@ -84,7 +79,6 @@ export default function AdminDashboardPage() {
             </div>
 
             <div className="border-t border-gray-200 pt-4 mt-4">
->>>>>>> origin/main
               <dl className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2">
                 <div className="sm:col-span-1">
                   <dt className="text-base font-medium text-gray-500">Full name</dt>
@@ -109,7 +103,6 @@ export default function AdminDashboardPage() {
                 </div>
               </dl>
             </div>
-<<<<<<< HEAD
           </div>
 
           <div className="bg-white shadow rounded-lg p-6">
@@ -161,7 +154,6 @@ export default function AdminDashboardPage() {
                 <h3 className="text-lg font-medium text-gray-900">Add Product</h3>
                 <p className="mt-2 text-sm text-gray-600">Create a new product listing</p>
               </Link>
-=======
 
             <div className="mt-8">
               <h2 className="text-xl font-semibold text-gray-900 mb-4">Admin Statistics</h2>
@@ -262,7 +254,6 @@ export default function AdminDashboardPage() {
                   <p className="mt-2 text-base text-gray-600">Create a new product listing</p>
                 </a>
               </div>
->>>>>>> origin/main
             </div>
           </div>
         </div>
