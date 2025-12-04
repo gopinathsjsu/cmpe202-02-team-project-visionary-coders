@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/VM5AL9S5)
+=======
 # Campus Marketplace
 
 ## Project Overview
@@ -99,3 +102,4 @@ The backend is configured for deployment on **Microsoft Azure**.
 The frontend is optimized for deployment on **Vercel** or **Railway**.
 - Connect the repository to Vercel/Railway.
 - Configure the `NEXT_PUBLIC_API_URL` environment variable to point to the deployed backend URL.
+>>>>>>> origin/main
