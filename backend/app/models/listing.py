@@ -18,6 +18,7 @@ class Listing(SQLModel, table=True):
     description: str
     price: float = Field(gt=0)
     photo_url: Optional[str] = None
+    location: Optional[str] = None  # e.g., "Engineering Building, Room 101"
     category: Category = Field(default=Category.none)
     is_sold: bool = Field(default=False)
     created_at: datetime = Field(default_factory=datetime.utcnow)

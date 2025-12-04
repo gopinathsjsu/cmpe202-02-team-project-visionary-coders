@@ -7,6 +7,8 @@ class ListingCreate(BaseModel):
     price: float = Field(gt=0)
     category: Optional[Literal["textbooks","gadgets","essentials","none"]] = "none"
     photo_url: Optional[str] = None
+    location: Optional[str] = None
+    seller_id: Optional[int] = None
 
 class ListingUpdate(BaseModel):
     title: Optional[str] = None
@@ -14,6 +16,7 @@ class ListingUpdate(BaseModel):
     price: Optional[float] = Field(default=None, gt=0)
     category: Optional[Literal["textbooks","gadgets","essentials","none"]] = None
     photo_url: Optional[str] = None
+    location: Optional[str] = None
     is_sold: Optional[bool] = None
 
 class ListingPublic(BaseModel):
@@ -24,6 +27,7 @@ class ListingPublic(BaseModel):
     category: str
     is_sold: bool
     photo_url: Optional[str] = None
+    location: Optional[str] = None
     seller_id: int
 
 class SellerInfo(BaseModel):
@@ -39,5 +43,6 @@ class ListingWithSeller(BaseModel):
     category: str
     is_sold: bool
     photo_url: Optional[str] = None
+    location: Optional[str] = None
     seller_id: int
     seller: SellerInfo
