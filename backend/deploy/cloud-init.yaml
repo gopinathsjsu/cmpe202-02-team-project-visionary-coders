@@ -1,0 +1,33 @@
+#cloud-config
+package_upgrade: true
+packages:
+  - docker.io
+  - git
+
+write_files:
+  - path: /etc/systemd/system/fastapi-app.service
+    content: |
+      [Unit]
+      Description=FastAPI Application Container
+      Requires=docker.service
+      After=docker.service
+
+      [Service]
+      Restart=always
+      ExecStart=/usr/bin/docker run --rm --name fastapi-app -p 80:8000 fastapi-app:latest
+      ExecStop=/usr/bin/docker stop fastapi-app
+
+      [Install]
+      WantedBy=multi-user.target
+
+runcmd:
+  # Clone the repository (REPLACE WITH YOUR REPO URL)
+  - git clone https://github.com/gopinathsjsu/cmpe202-02-team-project-visionary-coders.git /app
+  
+  # Build the Docker image
+  - cd /app/backend
+  - docker build -t fastapi-app:latest .
+  
+  # Start the service
+  - systemctl enable fastapi-app
+  - systemctl start fastapi-app
