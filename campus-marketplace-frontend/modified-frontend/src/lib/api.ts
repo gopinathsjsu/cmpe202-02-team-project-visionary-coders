@@ -1,6 +1,11 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
+<<<<<<< HEAD
+import { SignUpData, SignInData, AuthResponse, User, Listing } from '@/types/auth';
+import { AdminSummary } from '@/types/admin';
+=======
 import { SignUpData, SignInData, AuthResponse, User } from '@/types/auth';
+>>>>>>> origin/main
 
 // Configure axios instance
 // Configure axios instance
@@ -181,4 +186,155 @@ export const listingAPI = {
   },
 };
 
+<<<<<<< HEAD
+// Admin API functions
+export const adminAPI = {
+  getSummary: async (): Promise<AdminSummary> => {
+    try {
+      const response = await apiClient.get('/admin/summary');
+      return response.data;
+    } catch (error: unknown) {
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to fetch summary');
+    }
+  },
+  getUsers: async () => {
+    try {
+      const response = await apiClient.get('/admin/users');
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to fetch users');
+    }
+  },
+  getListings: async (params?: { status?: string; q?: string; seller_id?: number }): Promise<Listing[]> => {
+    try {
+      const response = await apiClient.get('/admin/listings', { params });
+      return response.data;
+    } catch (error: unknown) {
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to fetch listings');
+    }
+  },
+  updateListing: async (id: number, data: { status?: string; is_sold?: boolean }) => {
+    try {
+      const response = await apiClient.patch(`/admin/listings/${id}`, data);
+      return response.data;
+    } catch (error: unknown) {
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to update listing');
+    }
+  },
+  deleteListing: async (id: number) => {
+    try {
+      const response = await apiClient.delete(`/admin/listings/${id}`);
+      return response.data;
+    } catch (error: unknown) {
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to delete listing');
+    }
+  },
+  deleteUser: async (id: number) => {
+    try {
+      const response = await apiClient.delete(`/admin/users/${id}`);
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to delete user');
+    }
+  },
+  getReports: async () => {
+    try {
+      const response = await apiClient.get('/admin/reports');
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to fetch reports');
+    }
+  },
+  resolveReport: async (id: number) => {
+    try {
+      const response = await apiClient.patch(`/admin/reports/${id}/resolve`);
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to resolve report');
+    }
+  },
+  getPendingListings: async () => {
+    try {
+      const response = await apiClient.get('/admin/listings/pending');
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to fetch pending listings');
+    }
+  },
+  approveListing: async (id: number) => {
+    try {
+      const response = await apiClient.patch(`/admin/listings/${id}/approve`);
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to approve listing');
+    }
+  },
+  rejectListing: async (id: number) => {
+    try {
+      const response = await apiClient.patch(`/admin/listings/${id}/reject`);
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to reject listing');
+    }
+  },
+};
+
+// Chat API functions
+export const chatAPI = {
+  getHistory: async (roomId: string) => {
+    try {
+      const response = await apiClient.get(`/chat/rooms/${roomId}/history`);
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to fetch chat history');
+    }
+  },
+  sendMessage: async (roomId: string, receiverId: number, content: string) => {
+    try {
+      const response = await apiClient.post('/chat/send', {
+        room_id: roomId,
+        receiver_id: receiverId,
+        content: content,
+      });
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to send message');
+    }
+  },
+  getConversations: async () => {
+    try {
+      const response = await apiClient.get('/chat/conversations');
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to fetch conversations');
+    }
+  },
+};
+
+=======
+>>>>>>> origin/main
 export default apiClient;

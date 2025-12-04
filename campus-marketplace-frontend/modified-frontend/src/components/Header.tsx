@@ -87,6 +87,22 @@ export default function Header() {
             <span className="hidden sm:inline">Dashboard</span>
           </Link>
 
+<<<<<<< HEAD
+          {user?.role === 'admin' && (
+            <Link
+              href="/admin/dashboard"
+              className={`px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 transition-all whitespace-nowrap ${isActive('/admin/dashboard') ? 'bg-gray-900 text-white shadow-md' : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
+                }`}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h4v18H3V3zm7 0h4v18h-4V3zm7 0h4v18h-4V3z" />
+              </svg>
+              <span className="hidden sm:inline">Admin</span>
+            </Link>
+          )}
+
+=======
+>>>>>>> origin/main
           <Link
             href="/marketplace"
             className={`px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 transition-all whitespace-nowrap ${isActive('/marketplace') ? 'bg-gray-900 text-white shadow-md' : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'

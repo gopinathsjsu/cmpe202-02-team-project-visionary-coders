@@ -12,6 +12,14 @@ class Category(str, Enum):
     sports = "sports"
     none = "none"
 
+<<<<<<< HEAD
+class ListingStatus(str, Enum):
+    pending = "pending"
+    approved = "approved"
+    rejected = "rejected"
+
+=======
+>>>>>>> origin/main
 class Listing(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     title: str
@@ -19,6 +27,10 @@ class Listing(SQLModel, table=True):
     price: float = Field(gt=0)
     photo_url: Optional[str] = None
     category: Category = Field(default=Category.none)
+<<<<<<< HEAD
+    status: ListingStatus = Field(default=ListingStatus.pending)
+=======
+>>>>>>> origin/main
     is_sold: bool = Field(default=False)
     created_at: datetime = Field(default_factory=datetime.utcnow)
     seller_id: int = Field(foreign_key="user.id")
