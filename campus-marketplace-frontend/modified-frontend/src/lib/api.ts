@@ -235,7 +235,7 @@ export const chatAPI = {
   },
 
   // Create or get existing room
-  getOrCreateRoom: async (listingId: number, sellerId: number, buyerId: number = 2) => {
+  getOrCreateRoom: async (listingId: number, sellerId: number, buyerId: number) => {
     try {
       const response = await apiClient.post('/chat/rooms', {
         listing_id: listingId,
@@ -251,7 +251,7 @@ export const chatAPI = {
   },
 
   // Send message
-  sendMessage: async (roomId: number, content: string, senderId: number = 2) => {
+  sendMessage: async (roomId: number, content: string, senderId: number) => {
     try {
       const response = await apiClient.post(`/chat/rooms/${roomId}/messages`, {
         content,

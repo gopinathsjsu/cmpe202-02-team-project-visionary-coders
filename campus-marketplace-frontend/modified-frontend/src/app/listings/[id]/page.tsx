@@ -12,7 +12,7 @@ import { mockProducts } from '@/lib/mockData';
 export default function ListingDetailPage() {
     const params = useParams();
     const router = useRouter();
-    const { isAuthenticated } = useAuth();
+    const { isAuthenticated, user } = useAuth();
     const { id } = params;
     const [listing, setListing] = useState<Listing | null>(null);
     const [loading, setLoading] = useState(true);
@@ -36,11 +36,15 @@ export default function ListingDetailPage() {
             return;
         }
         if (!listing) return;
-        
+
         try {
             // Create or fetch existing chat room
-            const room = await chatAPI.getOrCreateRoom(listing.id, listing.seller_id);
-            
+            if (!user) {
+                setError('You must be logged in to chat');
+                return;
+            }
+            const room = await chatAPI.getOrCreateRoom(listing.id, listing.seller_id, parseInt(user.id.toString()));
+
             // Navigate to chat room
             router.push(`/chat/${room.id}`);
         } catch (err) {
@@ -278,7 +282,7 @@ export default function ListingDetailPage() {
                                 {/* Action Buttons */}
                                 <div className="pt-6 mt-auto">
                                     <div className="flex gap-4">
-                                        <button 
+                                        <button
                                             onClick={handleAddToCart}
                                             className="flex-1 bg-white border-2 border-indigo-600 text-indigo-600 font-bold text-base py-4 rounded-xl hover:bg-indigo-50 transition-colors flex items-center justify-center gap-2"
                                         >
@@ -288,7 +292,7 @@ export default function ListingDetailPage() {
                                             </svg>
                                             Add to Cart
                                         </button>
-                                        <button 
+                                        <button
                                             onClick={handleOpenChat}
                                             className="flex-1 bg-indigo-600 text-white font-bold text-base py-4 rounded-xl hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2"
                                         >

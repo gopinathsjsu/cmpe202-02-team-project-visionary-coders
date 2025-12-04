@@ -5,6 +5,7 @@ import { useParams, useRouter } from 'next/navigation';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import { chatAPI, listingAPI } from '@/lib/api';
 import { Listing } from '@/types/auth';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface Message {
   id: number;
@@ -55,11 +56,11 @@ export default function ChatRoomPage() {
     const fetchRoomData = async () => {
       try {
         setLoading(true);
-        
+
         // Fetch room data
         try {
           const roomData = await chatAPI.getRoom(roomId);
-          
+
           // Mark this chat as viewed
           const viewedChats = JSON.parse(localStorage.getItem('viewedChats') || '[]');
           if (!viewedChats.includes(roomId)) {
@@ -68,7 +69,7 @@ export default function ChatRoomPage() {
             // Trigger header update to refresh unread count
             globalThis.dispatchEvent(new Event('chatViewed'));
           }
-          
+
           // Fetch listing using room's listing_id
           try {
             const listingData = await listingAPI.getListingById(roomData.listing_id.toString());
@@ -90,7 +91,7 @@ export default function ChatRoomPage() {
           // If room doesn't exist yet, still show empty chat
           setMessages([]);
         }
-        
+
         setError('');
       } catch (err) {
         console.error('Error loading chat:', err);
@@ -105,12 +106,14 @@ export default function ChatRoomPage() {
     }
   }, [roomId]);
 
+  const { user } = useAuth(); // Get current user
+
   const handleSendMessage = async () => {
-    if (!messageText.trim()) return;
+    if (!messageText.trim() || !user) return;
 
     try {
       setSending(true);
-      const newMessage = await chatAPI.sendMessage(roomId, messageText, 2); // Using buyer_id 2
+      const newMessage = await chatAPI.sendMessage(roomId, messageText, parseInt(user.id.toString()));
       setMessages([...messages, newMessage]);
       setMessageText('');
     } catch (err) {
@@ -121,12 +124,12 @@ export default function ChatRoomPage() {
   };
 
   const handleSendOffer = async () => {
-    if (!offerPrice.trim()) return;
+    if (!offerPrice.trim() || !user) return;
 
     try {
       setSendingOffer(true);
       const offerContent = `🏷️ OFFER: $${offerPrice}${offerMessage ? ` - ${offerMessage}` : ''}`;
-      const newMessage = await chatAPI.sendMessage(roomId, offerContent, 2); // Using buyer_id 2
+      const newMessage = await chatAPI.sendMessage(roomId, offerContent, parseInt(user.id.toString()));
       setMessages([...messages, newMessage]);
       setOfferPrice('');
       setOfferMessage('');
@@ -192,12 +195,12 @@ export default function ChatRoomPage() {
                 </svg>
                 Back to Chats
               </button>
-              
+
               <div className="flex-1">
                 <h1 className="text-xl font-bold text-gray-900">{listing?.title || 'Chat'}</h1>
                 <p className="text-base text-gray-500">{listing?.price ? `$${listing.price}` : ''}</p>
               </div>
-              
+
               <div className="flex gap-2">
                 {listing && (
                   <button
@@ -221,7 +224,7 @@ export default function ChatRoomPage() {
                     Product Details
                   </button>
                 )}
-                
+
                 {listing?.photo_url && (
                   <img
                     src={listing.photo_url}
@@ -242,23 +245,21 @@ export default function ChatRoomPage() {
             </div>
           ) : (
             messages.map((message) => {
-              const isCurrentUser = 2 === message.sender_id; // Assuming buyer_id is 2
+              const isCurrentUser = user && parseInt(user.id.toString()) === message.sender_id;
               return (
                 <div
                   key={message.id}
                   className={`flex ${isCurrentUser ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
-                    className={`max-w-xs px-4 py-2 rounded-lg ${
-                      isCurrentUser
-                        ? 'bg-indigo-600 text-white rounded-br-none'
-                        : 'bg-gray-200 text-gray-900 rounded-bl-none'
-                    }`}
+                    className={`max-w-xs px-4 py-2 rounded-lg ${isCurrentUser
+                      ? 'bg-indigo-600 text-white rounded-br-none'
+                      : 'bg-gray-200 text-gray-900 rounded-bl-none'
+                      }`}
                   >
                     <p className="break-words">{message.content}</p>
-                    <p className={`text-base mt-1 ${
-                      isCurrentUser ? 'text-indigo-100' : 'text-gray-600'
-                    }`}>
+                    <p className={`text-base mt-1 ${isCurrentUser ? 'text-indigo-100' : 'text-gray-600'
+                      }`}>
                       {formatTime(message.sent_at)}
                     </p>
                   </div>
@@ -277,7 +278,7 @@ export default function ChatRoomPage() {
                 <p className="text-red-700 text-base">{error}</p>
               </div>
             )}
-            
+
             <div className="flex gap-3">
               <input
                 type="text"
@@ -317,7 +318,7 @@ export default function ChatRoomPage() {
               <div className="px-6 py-4 border-b border-gray-200">
                 <h2 className="text-xl font-bold text-gray-900">Make an Offer</h2>
               </div>
-              
+
               <div className="px-6 py-4 space-y-4">
                 <div>
                   <label htmlFor="offerPrice" className="block text-base font-medium text-gray-700 mb-1">
@@ -337,7 +338,7 @@ export default function ChatRoomPage() {
                     />
                   </div>
                 </div>
-                
+
                 <div>
                   <label htmlFor="offerMessage" className="block text-base font-medium text-gray-700 mb-1">
                     Message (Optional)
@@ -363,7 +364,7 @@ export default function ChatRoomPage() {
                   </div>
                 )}
               </div>
-              
+
               <div className="px-6 py-4 border-t border-gray-200 flex gap-3">
                 <button
                   onClick={() => {
