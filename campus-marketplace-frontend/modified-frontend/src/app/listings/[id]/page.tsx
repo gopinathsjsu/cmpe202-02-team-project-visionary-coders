@@ -5,6 +5,10 @@ import { useParams, useRouter } from 'next/navigation';
 import { listingAPI } from '@/lib/api';
 import { Listing } from '@/types/auth'; // Assuming Listing type is exported from auth or a shared types file
 import Image from 'next/image';
+<<<<<<< HEAD
+import { useAuth } from '@/contexts/AuthContext';
+=======
+>>>>>>> origin/main
 
 // Temporary type definition removed, using imported Listing type
 
@@ -12,6 +16,10 @@ export default function ListingDetailPage() {
     const params = useParams();
     const router = useRouter();
     const { id } = params;
+<<<<<<< HEAD
+    const { user } = useAuth();
+=======
+>>>>>>> origin/main
     const [listing, setListing] = useState<Listing | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
@@ -86,7 +94,24 @@ export default function ListingDetailPage() {
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
                             </svg>
                         </button>
+<<<<<<< HEAD
+                        <button
+                            onClick={() => {
+                                if (!user) {
+                                    router.push('/auth/login');
+                                    return;
+                                }
+                                if (user.id === String(listing.seller_id)) {
+                                    alert("You can't chat with yourself!");
+                                    return;
+                                }
+                                router.push(`/chat?room=listing-${listing.id}-${user.id}-${listing.seller_id}`);
+                            }}
+                            className="px-4 py-2 bg-indigo-900 text-white rounded-lg hover:bg-indigo-800 transition-colors text-sm font-medium"
+                        >
+=======
                         <button className="px-4 py-2 bg-indigo-900 text-white rounded-lg hover:bg-indigo-800 transition-colors text-sm font-medium">
+>>>>>>> origin/main
                             Contact Seller
                         </button>
                     </div>

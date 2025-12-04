@@ -44,4 +44,9 @@ export interface Listing {
   is_sold: boolean;
   photo_url?: string;
   seller_id: number;
+<<<<<<< HEAD
+  status: string;
+  created_at: string;
+=======
+>>>>>>> origin/main
 }

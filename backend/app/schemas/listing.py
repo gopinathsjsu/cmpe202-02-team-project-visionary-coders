@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+from datetime import datetime
+=======
+>>>>>>> origin/main
 from pydantic import BaseModel, Field
 from typing import Optional, Literal
 
@@ -22,6 +26,14 @@ class ListingPublic(BaseModel):
     description: str
     price: float
     category: str
+<<<<<<< HEAD
+    status: str
     is_sold: bool
     photo_url: Optional[str] = None
     seller_id: int
+    created_at: datetime
+=======
+    is_sold: bool
+    photo_url: Optional[str] = None
+    seller_id: int
+>>>>>>> origin/main
