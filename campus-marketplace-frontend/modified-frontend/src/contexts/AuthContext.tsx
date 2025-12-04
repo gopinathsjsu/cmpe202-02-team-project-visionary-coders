@@ -34,37 +34,31 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const signIn = async (data: SignInData) => {
     try {
-      setIsLoading(true);
       const response = await authAPI.signIn(data);
       if (response.user) {
         setUser(response.user);
-        // Redirect based on role
-        if (response.user.role === 'admin') {
-          router.push('/admin/dashboard');
-        } else {
-          router.push('/dashboard');
-        }
+        setIsLoading(false);
+        // Small delay to ensure state is updated before redirect
+        setTimeout(() => {
+          if (response.user?.role === 'admin') {
+            router.push('/admin/dashboard');
+          } else {
+            router.push('/');
+          }
+        }, 50);
       }
     } catch (error: unknown) {
-      throw error;
-    } finally {
       setIsLoading(false);
+      throw error;
     }
   };
 
   const signUp = async (data: SignUpData) => {
     try {
       setIsLoading(true);
-      const response = await authAPI.signUp(data);
-      if (response.user) {
-        setUser(response.user);
-        // Redirect based on role
-        if (response.user.role === 'admin') {
-          router.push('/admin/dashboard');
-        } else {
-          router.push('/dashboard');
-        }
-      }
+      await authAPI.signUp(data);
+      // After successful signup, redirect to home page
+      router.push('/');
     } catch (error: unknown) {
       throw error;
     } finally {

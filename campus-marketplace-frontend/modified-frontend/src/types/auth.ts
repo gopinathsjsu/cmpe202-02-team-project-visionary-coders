@@ -35,6 +35,12 @@ export interface AuthContextType {
   isAuthenticated: boolean;
 }
 
+export interface Seller {
+  id: number;
+  name: string;
+  email: string;
+}
+
 export interface Listing {
   id: number;
   title: string;
@@ -43,5 +49,7 @@ export interface Listing {
   category: string;
   is_sold: boolean;
   photo_url?: string;
+  location?: string;
   seller_id: number;
+  seller?: Seller;
 }

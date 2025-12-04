@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Campus Marketplace - Buy & Sell on Campus",
-  description: "Campus-only marketplace for students. Buy and sell textbooks, gadgets, and essentials. AI-powered search, in-app chat, and safe transactions.",
+  title: "Campify - Buy & Sell on Campus",
+  description: "Campify is a campus-only marketplace for students. Buy and sell textbooks, gadgets, and essentials. AI-powered search, in-app chat, and safe transactions.",
 };
 
 export default function RootLayout({
@@ -25,9 +25,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        suppressHydrationWarning
       >
         <AuthProvider>
           <Header />

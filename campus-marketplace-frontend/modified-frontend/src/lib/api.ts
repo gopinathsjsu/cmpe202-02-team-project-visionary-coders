@@ -27,7 +27,7 @@ export const authAPI = {
   // Sign up user
   signUp: async (data: SignUpData): Promise<AuthResponse> => {
     try {
-      // 1. Register
+      // 1. Register - creates user in SQLite database
       await apiClient.post('/auth/register', {
         email: data.email,
         password: data.password,
@@ -35,26 +35,12 @@ export const authAPI = {
         role: data.role,
       });
 
-      // 2. Auto-login to get token
-      const loginResponse = await apiClient.post<{ access_token: string }>('/auth/login', {
-        username: data.email, // OAuth2 expects username form field usually, but let's check backend schema
-        email: data.email, // Our backend might expect email in JSON body
-        password: data.password,
-      });
-
-      const token = loginResponse.data.access_token;
-      if (token) {
-        Cookies.set('auth_token', token, { expires: 7 });
-      }
-
-      // 3. Get user details
-      const userResponse = await apiClient.get<User>('/users/me');
-
+      // User created successfully in database, return success
       return {
         success: true,
-        message: 'Sign up successful',
-        token,
-        user: userResponse.data,
+        message: 'Sign up successful. Please sign in with your credentials.',
+        token: undefined,
+        user: undefined,
       };
     } catch (error: unknown) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -76,14 +62,49 @@ export const authAPI = {
         Cookies.set('auth_token', token, { expires: 7 });
       }
 
-      // Get user details
-      const userResponse = await apiClient.get<User>('/users/me');
+      // Extract user info from email in token (decode JWT)
+      try {
+        const parts = token.split('.');
+        if (parts.length === 3) {
+          const payload = JSON.parse(atob(parts[1]));
+          const email = payload.sub;
+          return {
+            success: true,
+            message: 'Sign in successful',
+            token,
+            user: {
+              id: '1', // Default ID
+              email,
+              name: email.split('@')[0], // Use email prefix as name
+              role: 'buyer',
+            },
+          };
+        }
+      } catch (e) {
+        // Fall back to returning basic user info
+        return {
+          success: true,
+          message: 'Sign in successful',
+          token,
+          user: {
+            id: '1',
+            email: data.email,
+            name: data.email.split('@')[0],
+            role: 'buyer',
+          },
+        };
+      }
 
       return {
         success: true,
         message: 'Sign in successful',
         token,
-        user: userResponse.data,
+        user: {
+          id: '1',
+          email: data.email,
+          name: data.email.split('@')[0],
+          role: 'buyer',
+        },
       };
     } catch (error: unknown) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -95,12 +116,33 @@ export const authAPI = {
   // Get current user
   getCurrentUser: async (): Promise<User> => {
     try {
-      const response = await apiClient.get<User>('/users/me');
-      return response.data;
+      const token = Cookies.get('auth_token');
+      if (!token) {
+        throw new Error('No token found');
+      }
+      
+      // Extract user info from JWT token
+      try {
+        const parts = token.split('.');
+        if (parts.length === 3) {
+          const payload = JSON.parse(atob(parts[1]));
+          const email = payload.sub;
+          return {
+            id: '1',
+            email,
+            name: email.split('@')[0],
+            role: 'buyer',
+          };
+        }
+      } catch (e) {
+        throw new Error('Invalid token');
+      }
+      
+      throw new Error('Failed to parse token');
     } catch (error: unknown) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const err = error as any;
-      throw new Error(err.response?.data?.detail || 'An error occurred');
+      throw new Error(err.message || 'An error occurred');
     }
   },
 
@@ -117,6 +159,18 @@ export const authAPI = {
       return true;
     } catch {
       return false;
+    }
+  },
+
+  // Update user profile
+  updateProfile: async (data: { name?: string; email?: string; password?: string }): Promise<User> => {
+    try {
+      const response = await apiClient.put<User>('/users/me', data);
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to update profile');
     }
   },
 };
@@ -163,6 +217,16 @@ export const listingAPI = {
       throw new Error(err.response?.data?.detail || 'Failed to create listing');
     }
   },
+  deleteListing: async (id: string | number) => {
+    try {
+      const response = await apiClient.delete(`/listings/${id}`);
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to delete listing');
+    }
+  },
   uploadPhoto: async (file: File) => {
     try {
       const formData = new FormData();
@@ -177,6 +241,90 @@ export const listingAPI = {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const err = error as any;
       throw new Error(err.response?.data?.detail || 'Failed to upload photo');
+    }
+  },
+};
+
+// Chat API functions
+export const chatAPI = {
+  // Get all chat rooms for current user
+  getRooms: async () => {
+    try {
+      const response = await apiClient.get('/chat/rooms');
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to fetch chat rooms');
+    }
+  },
+
+  // Get specific room
+  getRoom: async (roomId: number) => {
+    try {
+      const response = await apiClient.get(`/chat/rooms/${roomId}`);
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to fetch chat room');
+    }
+  },
+
+  // Get messages for room
+  getMessages: async (roomId: number, limit: number = 50, offset: number = 0) => {
+    try {
+      const response = await apiClient.get(`/chat/rooms/${roomId}/messages`, {
+        params: { limit, offset },
+      });
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to fetch messages');
+    }
+  },
+
+  // Create or get existing room
+  getOrCreateRoom: async (listingId: number, sellerId: number, buyerId: number = 2) => {
+    try {
+      const response = await apiClient.post('/chat/rooms', {
+        listing_id: listingId,
+        seller_id: sellerId,
+        buyer_id: buyerId,
+      });
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to create chat room');
+    }
+  },
+
+  // Send message
+  sendMessage: async (roomId: number, content: string, senderId: number = 2) => {
+    try {
+      const response = await apiClient.post(`/chat/rooms/${roomId}/messages`, {
+        content,
+        sender_id: senderId,
+      });
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to send message');
+    }
+  },
+
+  // Delete room
+  deleteRoom: async (roomId: number) => {
+    try {
+      const response = await apiClient.delete(`/chat/rooms/${roomId}`);
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to delete chat room');
     }
   },
 };
