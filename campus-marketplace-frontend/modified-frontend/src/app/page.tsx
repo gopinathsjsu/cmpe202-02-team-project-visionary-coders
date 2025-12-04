@@ -15,7 +15,7 @@ interface Listing {
 }
 
 export default function HomePage() {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
   const [searchQuery, setSearchQuery] = useState('');
 
 
@@ -111,9 +111,9 @@ export default function HomePage() {
                 >
                   Browse Marketplace
                 </Link>
-                {(useAuth().user?.role === 'admin' || useAuth().user?.role === 'seller') && (
+                {(user?.role === 'admin' || user?.role === 'seller') && (
                   <Link
-                    href={useAuth().user?.role === 'admin' ? "/admin/add-product" : "/listings/create"}
+                    href={user?.role === 'admin' ? "/admin/add-product" : "/listings/create"}
                     className="px-8 py-4 bg-yellow-400 text-gray-900 font-bold rounded-full shadow-lg hover:bg-yellow-500 transition-all transform hover:scale-105"
                   >
                     + Sell Something

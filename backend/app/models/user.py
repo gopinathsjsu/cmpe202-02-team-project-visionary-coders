@@ -15,3 +15,4 @@ class User(SQLModel, table=True):
     hashed_password: str
     # relationships
     listings: List["Listing"] = Relationship(back_populates="seller")
+    cart: Optional["Cart"] = Relationship(back_populates="user")

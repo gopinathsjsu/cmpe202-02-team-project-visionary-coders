@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from app.core.config import settings
 from app.db.session import create_db_and_tables
-from app.routers import auth, users, listings, chat, admin, search
+from app.routers import auth, users, listings, chat, admin, search, cart
 from app.services.chat_manager import manager
 
 app = FastAPI(title="Campus Marketplace API", version="0.1.0")
@@ -25,6 +25,7 @@ app.include_router(listings.router, prefix="/listings", tags=["Listings"])
 app.include_router(chat.router, prefix="/chat", tags=["Chat"])
 app.include_router(admin.router, prefix="/admin", tags=["Admin"])
 app.include_router(search.router, prefix="/search", tags=["Search"])
+app.include_router(cart.router, prefix="/cart", tags=["Cart"])
 
 @app.on_event("startup")
 def on_startup():

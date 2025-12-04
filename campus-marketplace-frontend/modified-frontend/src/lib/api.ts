@@ -181,4 +181,37 @@ export const listingAPI = {
   },
 };
 
+export const cartAPI = {
+  getCart: async () => {
+    try {
+      const response = await apiClient.get('/cart');
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to fetch cart');
+    }
+  },
+  addToCart: async (listingId: number) => {
+    try {
+      const response = await apiClient.post(`/cart/add/${listingId}`);
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to add to cart');
+    }
+  },
+  removeFromCart: async (itemId: number) => {
+    try {
+      const response = await apiClient.delete(`/cart/items/${itemId}`);
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to remove from cart');
+    }
+  },
+};
+
 export default apiClient;

@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { listingAPI } from '@/lib/api';
+import { useCart } from '@/contexts/CartContext';
 import { Listing } from '@/types/auth'; // Assuming Listing type is exported from auth or a shared types file
 import Image from 'next/image';
 
@@ -12,6 +13,7 @@ export default function ListingDetailPage() {
     const params = useParams();
     const router = useRouter();
     const { id } = params;
+    const { addToCart } = useCart();
     const [listing, setListing] = useState<Listing | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
@@ -194,7 +196,17 @@ export default function ListingDetailPage() {
                                         <button className="flex-[3] bg-indigo-600 text-white font-bold py-4 rounded-xl hover:bg-indigo-700 transition-colors">
                                             Make an Offer
                                         </button>
-                                        <button className="flex-[1] bg-white border-2 border-gray-100 text-gray-700 font-bold py-4 rounded-xl hover:bg-gray-50 transition-colors flex items-center justify-center">
+                                        <button
+                                            onClick={async () => {
+                                                try {
+                                                    await addToCart(listing.id);
+                                                    alert('Added to cart!');
+                                                } catch (err) {
+                                                    alert('Failed to add to cart');
+                                                }
+                                            }}
+                                            className="flex-[1] bg-white border-2 border-gray-100 text-gray-700 font-bold py-4 rounded-xl hover:bg-gray-50 transition-colors flex items-center justify-center"
+                                        >
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-red-500">
                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
                                             </svg>
