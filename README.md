@@ -1,5 +1,7 @@
 # Campify 
 
+**Team: Visionary Coders**
+
 ## Project Overview
 Campus Marketplace is a comprehensive platform designed exclusively for college students to buy and sell items within their campus community. It functions similarly to Facebook Marketplace but with enhanced security and features tailored for students, including .edu email verification.
 
