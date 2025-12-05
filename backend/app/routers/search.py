@@ -3,7 +3,7 @@ from pydantic import BaseModel
 from typing import List, Optional
 from sqlmodel import Session, select
 from app.db.session import get_session
-from app.models.listing import Listing, Category
+from app.models.listing import Listing, Category, ListingStatus
 from app.schemas.listing import ListingPublic
 from app.services.nl_search import nl_to_query
 
@@ -40,7 +40,7 @@ def advanced_search(
 
 def _apply_filters(filters: dict, session: Session, limit: int = 50, offset: int = 0):
     """Core filtering logic"""
-    stmt = select(Listing)
+    stmt = select(Listing).where(Listing.status == ListingStatus.approved)
     
     # Category filter
     if filters.get("category"):

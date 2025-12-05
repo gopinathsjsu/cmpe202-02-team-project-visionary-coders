@@ -85,12 +85,15 @@ export default function Header() {
           {isAuthenticated && user ? (
             <>
               {/* Sell New Item Button */}
-              <Link
-                href="/listings/create"
-                className="px-4 py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-all"
-              >
-                + Sell
-              </Link>
+              {/* Sell New Item Button */}
+              {user.role === 'seller' && (
+                <Link
+                  href="/listings/create"
+                  className="px-4 py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-all"
+                >
+                  + Sell
+                </Link>
+              )}
 
               {/* Cart Icon */}
               <Link

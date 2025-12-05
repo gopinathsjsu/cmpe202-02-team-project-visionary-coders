@@ -27,14 +27,9 @@ export default function SignUpForm() {
     try {
       setError('');
       setIsSubmitting(true);
-      
-      // Default role is buyer
-      const updatedData = {
-        ...data,
-        role: 'buyer' as any,
-      };
-      
-      await signUp(updatedData);
+
+      // Role is now handled by the form
+      await signUp(data);
     } catch (err: unknown) {
       const errorMessage = err instanceof Error ? err.message : 'An error occurred';
       setError(errorMessage || 'Failed to create account. Please try again.');
@@ -120,7 +115,7 @@ export default function SignUpForm() {
                 </label>
                 <div className="group relative inline-block">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-5 h-5 text-gray-400 cursor-help hover:text-gray-600 transition-colors">
-                    <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="2"/>
+                    <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="2" />
                     <text x="12" y="16" textAnchor="middle" fill="currentColor" fontSize="12" fontWeight="bold">i</text>
                   </svg>
                   {/* Tooltip */}
@@ -157,6 +152,51 @@ export default function SignUpForm() {
               />
               {errors.confirmPassword && (
                 <p className="mt-2 text-base text-red-600 font-medium">{errors.confirmPassword.message}</p>
+              )}
+            </div>
+
+            {/* Role Selection */}
+            <div>
+              <label className="block text-base font-semibold text-gray-900 mb-3">
+                I want to...
+              </label>
+              <div className="grid grid-cols-2 gap-4">
+                <label className="relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none">
+                  <input
+                    type="radio"
+                    {...register('role')}
+                    value="buyer"
+                    className="sr-only peer"
+                  />
+                  <span className="flex flex-1">
+                    <span className="flex flex-col">
+                      <span className="block text-sm font-medium text-gray-900 peer-checked:text-blue-600">Buy Items</span>
+                      <span className="mt-1 flex items-center text-sm text-gray-500">Find great deals on campus</span>
+                    </span>
+                  </span>
+                  <span className="pointer-events-none absolute -inset-px rounded-lg border-2 border-transparent peer-checked:border-blue-600" aria-hidden="true"></span>
+                  <span className="pointer-events-none absolute right-4 top-4 h-4 w-4 rounded-full border border-gray-300 bg-white peer-checked:border-blue-600 peer-checked:bg-blue-600"></span>
+                </label>
+
+                <label className="relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none">
+                  <input
+                    type="radio"
+                    {...register('role')}
+                    value="seller"
+                    className="sr-only peer"
+                  />
+                  <span className="flex flex-1">
+                    <span className="flex flex-col">
+                      <span className="block text-sm font-medium text-gray-900 peer-checked:text-blue-600">Sell Items</span>
+                      <span className="mt-1 flex items-center text-sm text-gray-500">List your items for sale</span>
+                    </span>
+                  </span>
+                  <span className="pointer-events-none absolute -inset-px rounded-lg border-2 border-transparent peer-checked:border-blue-600" aria-hidden="true"></span>
+                  <span className="pointer-events-none absolute right-4 top-4 h-4 w-4 rounded-full border border-gray-300 bg-white peer-checked:border-blue-600 peer-checked:bg-blue-600"></span>
+                </label>
+              </div>
+              {errors.role && (
+                <p className="mt-2 text-base text-red-600 font-medium">{errors.role.message}</p>
               )}
             </div>
 

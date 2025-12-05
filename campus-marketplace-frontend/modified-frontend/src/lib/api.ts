@@ -201,6 +201,16 @@ export const listingAPI = {
       throw new Error(err.response?.data?.detail || 'Failed to mark listing as sold');
     }
   },
+  reportListing: async (listingId: number, reason: string) => {
+    try {
+      const response = await apiClient.post('/reports', { listing_id: listingId, reason });
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to report listing');
+    }
+  },
 };
 
 // Chat API functions
@@ -385,6 +395,28 @@ export const adminAPI = {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const err = error as any;
       throw new Error(err.response?.data?.detail || 'Failed to delete listing');
+    }
+  },
+
+  getReports: async () => {
+    try {
+      const response = await apiClient.get('/admin/reports');
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to fetch reports');
+    }
+  },
+
+  resolveReport: async (id: number) => {
+    try {
+      const response = await apiClient.patch(`/admin/reports/${id}/resolve`);
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to resolve report');
     }
   },
 };

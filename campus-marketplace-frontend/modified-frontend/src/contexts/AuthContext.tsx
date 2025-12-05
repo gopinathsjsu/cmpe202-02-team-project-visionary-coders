@@ -57,8 +57,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     try {
       setIsLoading(true);
       await authAPI.signUp(data);
-      // After successful signup, redirect to home page
-      router.push('/');
+      // After successful signup, redirect to sign in page
+      router.push('/auth/signin');
     } catch (error: unknown) {
       throw error;
     } finally {

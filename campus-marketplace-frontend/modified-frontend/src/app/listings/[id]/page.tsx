@@ -30,6 +30,31 @@ export default function ListingDetailPage() {
         }
     };
 
+    const [isReportModalOpen, setIsReportModalOpen] = useState(false);
+    const [reportReason, setReportReason] = useState('');
+    const [reportSuccess, setReportSuccess] = useState(false);
+
+    const handleReport = async () => {
+        if (!isAuthenticated) {
+            router.push('/auth/signin');
+            return;
+        }
+        if (!listing || !reportReason.trim()) return;
+
+        try {
+            await listingAPI.reportListing(listing.id, reportReason);
+            setReportSuccess(true);
+            setTimeout(() => {
+                setIsReportModalOpen(false);
+                setReportSuccess(false);
+                setReportReason('');
+            }, 2000);
+        } catch (err) {
+            console.error('Error reporting listing:', err);
+            alert('Failed to submit report. Please try again.');
+        }
+    };
+
     const handleOpenChat = async () => {
         if (!isAuthenticated) {
             router.push('/auth/signin');
@@ -138,6 +163,17 @@ export default function ListingDetailPage() {
                             </svg>
                             Chat with Seller
                         </button>
+                        {isAuthenticated && user && listing && user.id !== String(listing.seller_id) && (
+                            <button
+                                onClick={() => setIsReportModalOpen(true)}
+                                className="p-2 hover:bg-red-50 text-gray-400 hover:text-red-500 rounded-full transition-colors"
+                                title="Report Listing"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                                </svg>
+                            </button>
+                        )}
                     </div>
                 </div>
 
@@ -293,8 +329,8 @@ export default function ListingDetailPage() {
                                             onClick={handleOpenChat}
                                             disabled={listing.is_sold}
                                             className={`flex-1 font-bold text-base py-4 rounded-xl transition-colors flex items-center justify-center gap-2 ${listing.is_sold
-                                                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                                                    : 'bg-indigo-600 text-white hover:bg-indigo-700'
+                                                ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                                                : 'bg-indigo-600 text-white hover:bg-indigo-700'
                                                 }`}
                                         >
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
@@ -308,6 +344,51 @@ export default function ListingDetailPage() {
                         </div>
                     </div>
                 </div>
+
+                {/* Report Modal */}
+                {isReportModalOpen && (
+                    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+                        <div className="bg-white rounded-2xl p-6 w-full max-w-md shadow-2xl animate-in fade-in zoom-in duration-200">
+                            {reportSuccess ? (
+                                <div className="text-center py-8">
+                                    <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-8 h-8 text-green-600">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                        </svg>
+                                    </div>
+                                    <h3 className="text-xl font-bold text-gray-900 mb-2">Report Submitted</h3>
+                                    <p className="text-gray-500">Thank you for helping keep our community safe.</p>
+                                </div>
+                            ) : (
+                                <>
+                                    <h3 className="text-xl font-bold text-gray-900 mb-4">Report Listing</h3>
+                                    <p className="text-gray-500 mb-4 text-sm">Please describe why you are reporting this listing. Our team will review it shortly.</p>
+                                    <textarea
+                                        value={reportReason}
+                                        onChange={(e) => setReportReason(e.target.value)}
+                                        placeholder="Reason for reporting..."
+                                        className="w-full p-3 border border-gray-300 rounded-xl mb-4 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none min-h-[100px]"
+                                    />
+                                    <div className="flex gap-3">
+                                        <button
+                                            onClick={() => setIsReportModalOpen(false)}
+                                            className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition-colors"
+                                        >
+                                            Cancel
+                                        </button>
+                                        <button
+                                            onClick={handleReport}
+                                            disabled={!reportReason.trim()}
+                                            className="flex-1 px-4 py-2 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                        >
+                                            Submit Report
+                                        </button>
+                                    </div>
+                                </>
+                            )}
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );
