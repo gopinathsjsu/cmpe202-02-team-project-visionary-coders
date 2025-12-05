@@ -1,18 +1,18 @@
 # Campus Marketplace (Campify) - CMPE 202 Project Report
 
 **Team:** Visionary Coders  
-**Members:** Tej Yenugunti, Girith Chaudary, Manasa Sadhu, Krishna Panjiyar  
+**Members:** TejKiran Yenugunti, Girith Chaudary, Manasa Sadhu, Krishna Panjiyar  
 **Date:** December 4, 2025
 
 ---
 
-## 📋 Document Overview
+## Document Overview
 
 This report package contains comprehensive documentation for the Campus Marketplace project:
 
 ### Main Documents
 
-1. **CMPE202_PROJECT_REPORT.md** - 🎯 START HERE
+1. **CMPE202_PROJECT_REPORT.md** - START HERE
    - Complete project overview and scope
    - Team member contributions and responsibilities
    - Architecture and technical design
@@ -56,7 +56,7 @@ This report package contains comprehensive documentation for the Campus Marketpl
 
 ---
 
-## 🚀 Quick Start (5 minutes)
+## Quick Start (5 minutes)
 
 ### Backend
 ```bash
@@ -78,7 +78,7 @@ npm run dev
 
 ---
 
-## 📊 Project Summary
+## Project Summary
 
 **Project Name:** Campify - Campus Marketplace  
 **Type:** Full-Stack Web Application  
@@ -86,50 +86,50 @@ npm run dev
 **Team Size:** 4 developers  
 
 ### Key Metrics
-- ✅ 175+ Git commits across team
-- ✅ 7+ API routers with 30+ endpoints
-- ✅ 3 user roles with complete RBAC
-- ✅ Real-time WebSocket chat
-- ✅ AI-powered NLP search with ChatGPT
-- ✅ Complete cloud deployment setup
-- ✅ 100% feature completion
+- 175+ Git commits across team
+- 7+ API routers with 30+ endpoints
+- 3 user roles with complete RBAC
+- Real-time WebSocket chat
+- AI-powered NLP search with ChatGPT
+- Complete cloud deployment setup
+- 100% feature completion
 
 ---
 
-## 🎯 Features Implemented
+## Features Implemented
 
 ### Marketplace Core
-- ✅ User registration with college email validation
-- ✅ JWT-based authentication and authorization
-- ✅ Create, read, update, delete listings
-- ✅ Photo upload and management
-- ✅ Search and filter by category and price
-- ✅ Natural language search with OpenAI
+- User registration with college email validation
+- JWT-based authentication and authorization
+- Create, read, update, delete listings
+- Photo upload and management
+- Search and filter by category and price
+- Natural language search with OpenAI
 
 ### Communication
-- ✅ Real-time chat between buyers and sellers
-- ✅ WebSocket integration for live messaging
-- ✅ Chat room persistence and history
-- ✅ Message read status and timestamps
+- Real-time chat between buyers and sellers
+- WebSocket integration for live messaging
+- Chat room persistence and history
+- Message read status and timestamps
 
 ### Admin Features
-- ✅ Dashboard with statistics
-- ✅ User management
-- ✅ Listing moderation
-- ✅ Report system for violations
-- ✅ Platform analytics
+- Dashboard with statistics
+- User management
+- Listing moderation
+- Report system for violations
+- Platform analytics
 
 ### Technical
-- ✅ JSON API with error handling
-- ✅ Docker containerization
-- ✅ Cloud deployment (AWS/Azure)
-- ✅ Auto-scaling and load balancing
-- ✅ PostgreSQL database (prod)
-- ✅ Comprehensive API documentation
+- JSON API with error handling
+- Docker containerization
+- Cloud deployment (AWS/Azure)
+- Auto-scaling and load balancing
+- PostgreSQL database (prod)
+- Comprehensive API documentation
 
 ---
 
-## 👥 Team Member Contributions
+## Team Member Contributions
 
 ### Tej Yenugunti - Dashboard Owner
 - User and Admin dashboard implementation
@@ -160,7 +160,7 @@ npm run dev
 
 ---
 
-## 🏗️ Architecture Highlights
+## Architecture Highlights
 
 ### Frontend Stack
 - Next.js 15 + React 19
@@ -188,7 +188,7 @@ npm run dev
 
 ---
 
-## 📈 Agile Process
+## Agile Process
 
 **Framework:** Scrum with 2-week sprints  
 **Total Sprints:** 6 (Sept 8 - Dec 4, 2025)
@@ -205,7 +205,7 @@ npm run dev
 
 ---
 
-## 📚 Documentation Included
+## Documentation Included
 
 ### Diagrams
 - Component diagram (architecture overview)
@@ -232,20 +232,20 @@ npm run dev
 
 ---
 
-## 🔐 Security Features
+## Security Features
 
-- ✅ JWT token-based authentication
-- ✅ Bcrypt password hashing
-- ✅ College email domain verification
-- ✅ Role-based access control (RBAC)
-- ✅ CORS configuration
-- ✅ SQL injection prevention (ORM)
-- ✅ XSS protection
-- ✅ Secure session management
+- JWT token-based authentication
+- Bcrypt password hashing
+- College email domain verification
+- Role-based access control (RBAC)
+- CORS configuration
+- SQL injection prevention (ORM)
+- XSS protection
+- Secure session management
 
 ---
 
-## 🌐 API Endpoints (Selection)
+## API Endpoints (Selection)
 
 ```
 Authentication:
@@ -276,36 +276,36 @@ For complete endpoint documentation, see CMPE202_PROJECT_REPORT.md
 
 ---
 
-## ✅ Compliance Checklist
+## Compliance Checklist
 
 ### Functional Requirements (100%)
-- ✅ Create and manage listings
-- ✅ Search and filter
-- ✅ In-app chat
-- ✅ Mark items as sold
-- ✅ Report system
-- ✅ NL search with ChatGPT
+- Create and manage listings
+- Search and filter
+- In-app chat
+- Mark items as sold
+- Report system
+- NL search with ChatGPT
 
 ### Technical Requirements (100%)
-- ✅ JSON APIs with validation
-- ✅ Error handling
-- ✅ Web/Mobile UI
-- ✅ 3 user roles
-- ✅ Cloud deployment
-- ✅ Mock database
+- JSON APIs with validation
+- Error handling
+- Web/Mobile UI
+- 3 user roles
+- Cloud deployment
+- Mock database
 
 ### Process Requirements (100%)
-- ✅ Component ownership
-- ✅ Weekly scrum reports
-- ✅ XP core values
-- ✅ Sprint artifacts
-- ✅ Architecture diagrams
-- ✅ GitHub journal
-- ✅ README file
+- Component ownership
+- Weekly scrum reports
+- XP core values
+- Sprint artifacts
+- Architecture diagrams
+- GitHub journal
+- README file
 
 ---
 
-## 📊 Project Statistics
+## Project Statistics
 
 | Metric | Value |
 |--------|-------|
@@ -321,7 +321,7 @@ For complete endpoint documentation, see CMPE202_PROJECT_REPORT.md
 
 ---
 
-## 🎓 Learning Outcomes
+## Learning Outcomes
 
 ### Technical Skills Demonstrated
 - Modern full-stack development
@@ -344,7 +344,7 @@ For complete endpoint documentation, see CMPE202_PROJECT_REPORT.md
 
 ---
 
-## 📖 How to Read This Report
+## How to Read This Report
 
 **For Overview:**
 → Read CMPE202_PROJECT_REPORT.md (Main Report)
@@ -363,7 +363,7 @@ For complete endpoint documentation, see CMPE202_PROJECT_REPORT.md
 
 ---
 
-## 🚀 Running the Project
+## Running the Project
 
 ### Prerequisites
 - Python 3.11+
@@ -394,7 +394,7 @@ npm run dev
 
 ---
 
-## 🔗 GitHub Repository
+## GitHub Repository
 
 **Repository Link:** [Link in main project README]
 
@@ -406,7 +406,7 @@ npm run dev
 
 ---
 
-## 📞 Support
+## Support
 
 ### For Questions About:
 - **Dashboard:** Contact Tej
@@ -416,7 +416,7 @@ npm run dev
 
 ---
 
-## 📅 Timeline
+## Timeline
 
 ```
 Week 1-2 (Sept 8-21):     Project setup, auth system
@@ -429,33 +429,33 @@ Week 11-12 (Nov 17-Dec 4): Final refinements and demo prep
 
 ---
 
-## 🎉 Success Criteria Met
+## Success Criteria Met
 
-✅ All functional requirements implemented  
-✅ Professional code quality  
-✅ Complete documentation  
-✅ Agile process followed  
-✅ Team collaboration demonstrated  
-✅ Cloud deployment ready  
-✅ Scalable architecture  
-✅ Security best practices  
+- All functional requirements implemented
+- Professional code quality
+- Complete documentation
+- Agile process followed
+- Team collaboration demonstrated
+- Cloud deployment ready
+- Scalable architecture
+- Security best practices
 
 ---
 
-## 📝 Version History
+## Version History
 
 - **v1.0** - December 4, 2025 - Final Report for Demo Day
 
 ---
 
-**Project Status:** ✅ COMPLETE & READY FOR DEMO
+**Project Status:** COMPLETE & READY FOR DEMO
 
 **Prepared by:** Visionary Coders Team  
 **Date:** December 4, 2025
 
 ---
 
-## 📄 Document List
+## Document List
 
 1. This README (overview and quick reference)
 2. CMPE202_PROJECT_REPORT.md (main comprehensive report)
@@ -467,4 +467,4 @@ Week 11-12 (Nov 17-Dec 4): Final refinements and demo prep
 
 ---
 
-Good luck with Demo Day! 🚀
+Good luck with Demo Day!
