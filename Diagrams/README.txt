@@ -217,10 +217,5 @@ Project: Campus Marketplace (Campify)
 Course: CMPE 202 - Software Engineering
 Date: December 4, 2025
 
-═══════════════════════════════════════════════════════════════════════════
-
-✅ Ready for Demo Day presentation!
-
-Questions? Check README in parent directory or view diagrams online.
 
 ═══════════════════════════════════════════════════════════════════════════
