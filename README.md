@@ -56,11 +56,25 @@ The application follows a modern decoupled architecture:
    pip install -r requirements.txt
    ```
 4. Create a `.env` file (copy from example or set manually):
+
    ```bash
-   # Example .env content
-   SECRET_KEY=your_secret_key
+   # security
+   SECRET_KEY=dev-secret-change-me
+   ACCESS_TOKEN_EXPIRE_MINUTES=60
+
+   # storage
+
+   MEDIA_DIR=./media
+
+   # optional OpenAI for NL search
+
+   OPENAI_API_KEY=sk..
+
+   # database (defaults to SQLite file db.sqlite3 if omitted)
+
    DATABASE_URL=sqlite:///./db.sqlite3
    ```
+   
 5. Seed the database with mock data (optional):
    ```bash
    python -m app.db.seed_data
@@ -82,7 +96,10 @@ The application follows a modern decoupled architecture:
    ```
 3. Create a `.env.local` file:
    ```bash
-   NEXT_PUBLIC_API_URL=http://127.0.0.1:8000
+   NEXT_PUBLIC_API_URL=http://localhost:8000
+   NEXT_PUBLIC_BACKEND_URL=http://localhost:8000
+   # OpenAI API Key (for AI search)
+   NEXT_PUBLIC_OPENAI_API_KEY=sk...
    ```
 4. Start the development server:
    ```bash
