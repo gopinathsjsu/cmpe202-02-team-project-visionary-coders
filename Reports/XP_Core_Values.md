@@ -52,7 +52,7 @@ The Campify project generated substantial evidence of communication practices:
 
 - **80+ commits** with clear, descriptive messages averaging 50+ characters
 - **50+ GitHub issues and discussions** documenting decisions, requirements, and problem-solving
-- **5+ comprehensive README files** covering different components and processes
+- **3+ comprehensive README files** covering different components and processes
 - **Complete API documentation** with Swagger UI and manual endpoint descriptions
 - **Architecture diagrams** with explanations of system design and data flow
 - **Weekly standup notes** capturing progress and blockers
