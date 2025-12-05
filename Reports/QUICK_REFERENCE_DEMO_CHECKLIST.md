@@ -458,7 +458,7 @@ If demo fails, have ready:
 
 ## Success Criteria
 
-✅ **Demo is Successful if:**
+ **Demo is Successful if:**
 1. Application loads without errors
 2. Can register and login with multiple roles
 3. Search functionality works (with or without ChatGPT)
@@ -467,7 +467,7 @@ If demo fails, have ready:
 6. Admin can see dashboard and reports
 7. All 3 roles have appropriate permissions
 
-✅ **Expected Outcome:**
+ **Expected Outcome:**
 - Fully functioning marketplace prototype
 - Clear demonstration of all key features
 - Professional presentation of technical implementation
