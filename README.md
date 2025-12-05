@@ -116,3 +116,9 @@ The backend is configured for deployment on **Microsoft Azure**.
 The frontend is optimized for deployment on **Vercel** or **Railway**.
 - Connect the repository to Vercel/Railway.
 - Configure the `NEXT_PUBLIC_API_URL` environment variable to point to the deployed backend URL.
+
+## Team Members
+- Manasa Sadhu
+- Girith Chaudary
+- Krishna Panjiyar
+- Tejkiran Yenugunti 
