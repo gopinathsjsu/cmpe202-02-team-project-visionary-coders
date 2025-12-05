@@ -649,18 +649,6 @@ Merging: At least 1 approval required, CI/CD passing
 
 ## 4. Workload Distribution
 
-### Estimated Effort (500 total hours)
-
-| Component                | Hours | Team Member | Percentage |
-| ------------------------ | ----- | ----------- | ---------- |
-| Frontend Development     | 120   | Krishna     | 24%        |
-| Backend API Development  | 100   | Girith      | 20%        |
-| Dashboard Implementation | 80    | Tej         | 16%        |
-| Chat & WebSocket         | 85    | Manasa      | 17%        |
-| NLP/AI Search            | 50    | Krishna     | 10%        |
-| Deployment & DevOps      | 40    | Girith      | 8%         |
-| UI/UX Enhancement        | 25    | Manasa      | 5%         |
-
 ### Balanced Contributions
 
 **Principle Applied:** Every team member contributed to all aspects
