@@ -141,6 +141,27 @@ export default function ChatRoomPage() {
     }
   };
 
+  const handleAcceptOffer = async () => {
+    if (!listing || !user) return;
+    try {
+      if (confirm('Accept this offer? The item will be marked as sold.')) {
+        await listingAPI.markSold(listing.id);
+        setListing({ ...listing, is_sold: true });
+
+        // Send confirmation message
+        const newMessage = await chatAPI.sendMessage(roomId, "✅ Offer Accepted! This item is now sold.", parseInt(user.id.toString()));
+        setMessages((prev) => [...prev, newMessage]);
+      }
+    } catch (err) {
+      console.error('Failed to accept offer:', err);
+      alert('Failed to accept offer');
+    }
+  };
+
+  const handleCounterOffer = () => {
+    setShowOfferModal(true);
+  };
+
   const formatTime = (timestamp: string) => {
     const date = new Date(timestamp);
     return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -246,10 +267,12 @@ export default function ChatRoomPage() {
           ) : (
             messages.map((message) => {
               const isCurrentUser = user && parseInt(user.id.toString()) === message.sender_id;
+              const isOffer = message.content.startsWith('🏷️ OFFER:');
+
               return (
                 <div
                   key={message.id}
-                  className={`flex ${isCurrentUser ? 'justify-end' : 'justify-start'}`}
+                  className={`flex flex-col ${isCurrentUser ? 'items-end' : 'items-start'}`}
                 >
                   <div
                     className={`max-w-xs px-4 py-2 rounded-lg ${isCurrentUser
@@ -263,6 +286,23 @@ export default function ChatRoomPage() {
                       {formatTime(message.sent_at)}
                     </p>
                   </div>
+
+                  {isOffer && !isCurrentUser && !listing?.is_sold && (
+                    <div className="mt-2 flex gap-2">
+                      <button
+                        onClick={handleAcceptOffer}
+                        className="px-3 py-1 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 transition-colors"
+                      >
+                        Accept
+                      </button>
+                      <button
+                        onClick={handleCounterOffer}
+                        className="px-3 py-1 bg-indigo-600 text-white text-sm rounded-md hover:bg-indigo-700 transition-colors"
+                      >
+                        Counter Offer
+                      </button>
+                    </div>
+                  )}
                 </div>
               );
             })

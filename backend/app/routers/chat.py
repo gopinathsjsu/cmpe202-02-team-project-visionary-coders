@@ -92,7 +92,8 @@ def get_or_create_room(
 def send_message(
     room_id: int,
     payload: MessageCreate,
-    session: Session = Depends(get_session)
+    session: Session = Depends(get_session),
+    current_user: User = Depends(get_current_user)
 ):
     """Send a message in a chat room"""
     room = session.get(ChatRoom, room_id)
@@ -102,7 +103,7 @@ def send_message(
     # Create message
     message = Message(
         room_id=room_id,
-        sender_id=payload.sender_id,
+        sender_id=current_user.id,
         content=payload.content
     )
     session.add(message)

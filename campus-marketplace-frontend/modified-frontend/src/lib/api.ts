@@ -3,7 +3,6 @@ import Cookies from 'js-cookie';
 import { SignUpData, SignInData, AuthResponse, User } from '@/types/auth';
 
 // Configure axios instance
-// Configure axios instance
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
 const apiClient = axios.create({
@@ -192,6 +191,16 @@ export const listingAPI = {
       throw new Error(err.response?.data?.detail || 'Failed to upload photo');
     }
   },
+  markSold: async (id: number) => {
+    try {
+      const response = await apiClient.patch(`/listings/${id}/sold`);
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to mark listing as sold');
+    }
+  },
 };
 
 // Chat API functions
@@ -343,6 +352,39 @@ export const adminAPI = {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const err = error as any;
       throw new Error(err.response?.data?.detail || 'Failed to reject listing');
+    }
+  },
+
+  getListings: async (params?: any) => {
+    try {
+      const response = await apiClient.get('/admin/listings', { params });
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to fetch listings');
+    }
+  },
+
+  updateListing: async (id: number, data: any) => {
+    try {
+      const response = await apiClient.patch(`/admin/listings/${id}`, data);
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to update listing');
+    }
+  },
+
+  deleteListing: async (id: number) => {
+    try {
+      const response = await apiClient.delete(`/admin/listings/${id}`);
+      return response.data;
+    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const err = error as any;
+      throw new Error(err.response?.data?.detail || 'Failed to delete listing');
     }
   },
 };
