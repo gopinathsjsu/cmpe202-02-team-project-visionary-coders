@@ -87,7 +87,7 @@ export default function CreateListingPage() {
                                     required
                                     value={formData.title}
                                     onChange={handleChange}
-                                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-base p-2 border"
+                                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-base p-2 border text-gray-900"
                                 />
                             </div>
 
@@ -102,7 +102,7 @@ export default function CreateListingPage() {
                                     rows={4}
                                     value={formData.description}
                                     onChange={handleChange}
-                                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-base p-2 border"
+                                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-base p-2 border text-gray-900"
                                 />
                             </div>
 
@@ -120,7 +120,7 @@ export default function CreateListingPage() {
                                         step="0.01"
                                         value={formData.price}
                                         onChange={handleChange}
-                                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-base p-2 border"
+                                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-base p-2 border text-gray-900"
                                     />
                                 </div>
 
@@ -134,7 +134,7 @@ export default function CreateListingPage() {
                                         required
                                         value={formData.category}
                                         onChange={handleChange}
-                                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-base p-2 border"
+                                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-base p-2 border text-gray-900"
                                     >
                                         <option value="textbooks">Textbooks</option>
                                         <option value="gadgets">Gadgets</option>

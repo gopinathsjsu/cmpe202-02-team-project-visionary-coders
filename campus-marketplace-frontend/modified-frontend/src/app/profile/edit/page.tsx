@@ -13,7 +13,7 @@ export default function EditProfilePage() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
-    
+
     // Form state for profile editing
     const [formData, setFormData] = useState({
         name: '',
@@ -76,7 +76,7 @@ export default function EditProfilePage() {
 
             // Call API
             await authAPI.updateProfile(updateData);
-            
+
             setSuccess('Profile updated successfully!');
 
             // Redirect to view profile after a short delay
@@ -203,7 +203,7 @@ export default function EditProfilePage() {
                         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
                             <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8">
                                 <h2 className="text-3xl font-bold text-gray-900 mb-6">Change Password</h2>
-                                
+
                                 <form onSubmit={handlePasswordSubmit} className="space-y-4">
                                     <div>
                                         <label htmlFor="currentPassword" className="block text-base font-semibold text-gray-700 mb-3">
@@ -216,7 +216,7 @@ export default function EditProfilePage() {
                                             value={passwordData.currentPassword}
                                             onChange={handlePasswordInputChange}
                                             placeholder="Enter current password"
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg text-xl text-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg text-xl text-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent text-gray-900"
                                             required
                                         />
                                     </div>
@@ -232,7 +232,7 @@ export default function EditProfilePage() {
                                             value={passwordData.newPassword}
                                             onChange={handlePasswordInputChange}
                                             placeholder="Enter new password"
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg text-xl text-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg text-xl text-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent text-gray-900"
                                             required
                                         />
                                         <p className="text-sm text-gray-500 mt-2">Minimum 6 characters</p>
@@ -249,7 +249,7 @@ export default function EditProfilePage() {
                                             value={passwordData.confirmPassword}
                                             onChange={handlePasswordInputChange}
                                             placeholder="Confirm new password"
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg text-xl text-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg text-xl text-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent text-gray-900"
                                             required
                                         />
                                     </div>
@@ -326,7 +326,7 @@ export default function EditProfilePage() {
                                         value={formData.name}
                                         onChange={handleInputChange}
                                         placeholder="Enter your full name"
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-xl text-xl text-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-xl text-xl text-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white text-gray-900"
                                         required
                                     />
                                 </div>

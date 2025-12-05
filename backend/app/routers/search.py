@@ -55,13 +55,19 @@ def _apply_filters(filters: dict, session: Session, limit: int = 50, offset: int
     if filters.get("max_price") is not None:
         stmt = stmt.where(Listing.price <= filters["max_price"])
     
-    # Keyword filters
-    for keyword in filters.get("keywords", []):
-        if keyword.strip():
-            like = f"%{keyword.lower()}%"
-            stmt = stmt.where(
-                (Listing.title.ilike(like)) | (Listing.description.ilike(like))
-            )
+    # Keyword filters (OR logic - match ANY keyword)
+    keywords = filters.get("keywords", [])
+    if keywords:
+        keyword_conditions = []
+        for keyword in keywords:
+            if keyword.strip():
+                like = f"%{keyword.lower()}%"
+                keyword_conditions.append(
+                    (Listing.title.ilike(like)) | (Listing.description.ilike(like))
+                )
+        if keyword_conditions:
+            from sqlalchemy import or_
+            stmt = stmt.where(or_(*keyword_conditions))
     
     # Sorting
     sort_by = filters.get("sort_by", "recent")
