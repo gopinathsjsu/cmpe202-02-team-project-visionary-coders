@@ -6,7 +6,7 @@
 
 ## 1. Team Member Contributions Summary
 
-### 1.1 Tej Yenugunti - Dashboard Component Owner
+### 1.1 Tej Kiran Yenugunti - Dashboard Component Owner
 
 **Component:** User Dashboard & Admin Dashboard
 
