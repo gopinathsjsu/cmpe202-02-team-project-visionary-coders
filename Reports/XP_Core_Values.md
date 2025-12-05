@@ -50,7 +50,7 @@ To prevent miscommunication between frontend and backend developers, we establis
 
 The Campify project generated substantial evidence of communication practices:
 
-- **150+ commits** with clear, descriptive messages averaging 50+ characters
+- **80+ commits** with clear, descriptive messages averaging 50+ characters
 - **50+ GitHub issues and discussions** documenting decisions, requirements, and problem-solving
 - **5+ comprehensive README files** covering different components and processes
 - **Complete API documentation** with Swagger UI and manual endpoint descriptions
