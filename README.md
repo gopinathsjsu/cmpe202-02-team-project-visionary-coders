@@ -148,26 +148,26 @@ The frontend is optimized for deployment on **Vercel** or **Railway**.
 - Live database connectivity showing persistent data
 
 ### 2. **Seller Role Features**
-- ✅ **Create & Manage Listings**: Form to add new items with title, description, price, category
-- ✅ **Photo Upload**: Upload product photos with preview
-- ✅ **View Listings**: Dashboard showing all seller's active listings
-- ✅ **Listing Details**: View complete information for each listing
-- ✅ **Mark as Sold**: Toggle listing status to mark items as sold
-- ✅ **In-App Chat**: Receive and respond to buyer messages for each listing
+- **Create & Manage Listings**: Form to add new items with title, description, price, category
+- **Photo Upload**: Upload product photos with preview
+- **View Listings**: Dashboard showing all seller's active listings
+- **Listing Details**: View complete information for each listing
+- **Mark as Sold**: Toggle listing status to mark items as sold
+- **In-App Chat**: Receive and respond to buyer messages for each listing
 
 ### 3. **Buyer Role Features**
-- ✅ **Browse Listings**: View all available products across campus
-- ✅ **Listing Details**: Click on items to see full details including photos, price, location, seller info
-- ✅ **Search & Filter**: 
+- **Browse Listings**: View all available products across campus
+- **Listing Details**: Click on items to see full details including photos, price, location, seller info
+- **Search & Filter**: 
   - Filter by category (textbooks, gadgets, furniture, clothing, sports, essentials)
   - Filter by price range (min/max)
   - Standard keyword search
-- ✅ **AI-Powered Natural Language Search**: 
+- **AI-Powered Natural Language Search**: 
   - Ask questions like "Do you have a textbook for CMPE202?"
   - "Show me gaming laptops under $800"
   - GPT-powered query understanding and results
-- ✅ **In-App Chat**: Send messages to sellers for price negotiation
-- ✅ **Report Listings**: Report incomplete or suspicious listings to admin
+- **In-App Chat**: Send messages to sellers for price negotiation
+- **Report Listings**: Report incomplete or suspicious listings to admin
 
 ### 4. **Admin Role Features**
 - **Admin Dashboard**: View platform statistics and pending items
