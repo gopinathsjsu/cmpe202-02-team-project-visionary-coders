@@ -36,7 +36,7 @@ The application follows a modern decoupled architecture:
 ## Getting Started
 
 ### Prerequisites
-- Node.js 18+
+- Node.js 18+ (JavaScript & TypeScript)
 - Python 3.11+
 - Git
 
