@@ -18,7 +18,7 @@ export default function ListingDetailPage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
     const [cart, setCart] = useState<number[]>([]);
-    const [showSellerInfo, setShowSellerInfo] = useState(false);
+
 
     const handleAddToCart = () => {
         if (!isAuthenticated) {
@@ -181,19 +181,16 @@ export default function ListingDetailPage() {
                                 ))}
                             </div>
 
-                            {/* Seller Info Button */}
+                            {/* Seller Info */}
                             {listing.seller && (
-                                <button
-                                    onClick={() => setShowSellerInfo(true)}
-                                    className="mt-6 w-full bg-gradient-to-r from-indigo-50 to-blue-50 border-2 border-indigo-200 hover:border-indigo-400 text-indigo-900 font-semibold py-3 px-4 rounded-xl transition-all hover:shadow-md"
-                                >
+                                <div className="mt-6 w-full bg-gradient-to-r from-indigo-50 to-blue-50 border-2 border-indigo-200 text-indigo-900 font-semibold py-3 px-4 rounded-xl">
                                     <div className="flex items-center justify-center gap-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                                         </svg>
-                                        View Seller Info
+                                        Seller: {listing.seller.name}
                                     </div>
-                                </button>
+                                </div>
                             )}
                         </div>
                     </div>
@@ -308,62 +305,6 @@ export default function ListingDetailPage() {
                     </div>
                 </div>
             </div>
-
-            {/* Seller Info Modal */}
-            {showSellerInfo && listing.seller && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-                    <div className="bg-white rounded-3xl max-w-md w-full shadow-2xl">
-                        {/* Modal Header */}
-                        <div className="border-b border-gray-200 p-6 flex items-center justify-between">
-                            <div>
-                                <h3 className="text-xl font-bold text-gray-900">Seller Information</h3>
-                            </div>
-                            <button
-                                onClick={() => setShowSellerInfo(false)}
-                                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-gray-600">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            </button>
-                        </div>
-
-                        {/* Modal Content */}
-                        <div className="p-6 space-y-4">
-                            <div className="bg-gradient-to-r from-indigo-50 to-blue-50 rounded-xl p-4">
-                                <p className="text-base text-gray-600 mb-2">Seller Name</p>
-                                <p className="text-xl font-bold text-gray-900">{listing.seller.name}</p>
-                            </div>
-
-                            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4">
-                                <p className="text-base text-gray-600 mb-2">Contact Email</p>
-                                <p className="text-xl font-medium text-indigo-600 break-all">{listing.seller.email}</p>
-                            </div>
-
-                            <div className="pt-4 flex gap-3">
-                                <button
-                                    onClick={() => setShowSellerInfo(false)}
-                                    className="flex-1 px-4 py-3 bg-gray-100 text-gray-900 font-semibold rounded-xl hover:bg-gray-200 transition-colors"
-                                >
-                                    Close
-                                </button>
-                                <button
-                                    onClick={() => {
-                                        setShowSellerInfo(false);
-                                        handleOpenChat();
-                                    }}
-                                    className="flex-1 px-4 py-3 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2"
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
-                                    Chat
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )}
         </div>
     );
 }
