@@ -139,4 +139,89 @@ The frontend is optimized for deployment on **Vercel** or **Railway**.
 - ✅ **Search System**: Natural language based search using GPT API (e.g., "Do you have a textbook for CMPE202?")
 - ✅ **Real-time Chat**: In-app messaging between buyers and sellers for price negotiation
 - ✅ **Authentication**: JWT-based secure authentication with .edu email verification
-- ✅ **Cloud Deployment**: Auto-scaled infrastructure with load balancing 
+- ✅ **Cloud Deployment**: Auto-scaled infrastructure with load balancing
+
+## Demo Day Features (December 4, 2025)
+
+### 1. **Web-Based UI - Fully Integrated with API & Database**
+- Responsive web application running on Next.js
+- Real-time integration with backend API
+- Live database connectivity showing persistent data
+
+### 2. **Seller Role Features**
+- ✅ **Create & Manage Listings**: Form to add new items with title, description, price, category
+- ✅ **Photo Upload**: Upload product photos with preview
+- ✅ **View Listings**: Dashboard showing all seller's active listings
+- ✅ **Listing Details**: View complete information for each listing
+- ✅ **Mark as Sold**: Toggle listing status to mark items as sold
+- ✅ **In-App Chat**: Receive and respond to buyer messages for each listing
+
+### 3. **Buyer Role Features**
+- ✅ **Browse Listings**: View all available products across campus
+- ✅ **Listing Details**: Click on items to see full details including photos, price, location, seller info
+- ✅ **Search & Filter**: 
+  - Filter by category (textbooks, gadgets, furniture, clothing, sports, essentials)
+  - Filter by price range (min/max)
+  - Standard keyword search
+- ✅ **AI-Powered Natural Language Search**: 
+  - Ask questions like "Do you have a textbook for CMPE202?"
+  - "Show me gaming laptops under $800"
+  - GPT-powered query understanding and results
+- ✅ **In-App Chat**: Send messages to sellers for price negotiation
+- ✅ **Report Listings**: Report incomplete or suspicious listings to admin
+
+### 4. **Admin Role Features**
+- ✅ **Admin Dashboard**: View platform statistics and pending items
+- ✅ **Listing Moderation**: Approve or reject seller listings
+- ✅ **Delete Listings**: Remove inappropriate or duplicate listings
+- ✅ **Manage Users**: View registered users and their roles
+- ✅ **Handle Reports**: View and process buyer reports
+
+### 5. **Real-Time Chat System (All Users)**
+- ✅ **Buyer → Seller**: Send inquiries about products
+- ✅ **Seller → Buyer**: Respond to buyer messages
+- ✅ **Chat History**: View conversation thread for each listing
+- ✅ **Real-time Updates**: Live message delivery
+
+### 6. **Cloud Deployment & Infrastructure**
+- ✅ **API Hosting**: Running on AWS EC2 or Azure with auto-scaling
+- ✅ **Database Hosting**: PostgreSQL on managed cloud database service
+- ✅ **Load Balancer**: Distributes traffic across instances
+- ✅ **Auto-Scaling**: Infrastructure scales based on demand
+- ✅ **Configuration Display**: Show cloud setup details and architecture
+
+### 7. **Network Activity Visualization**
+- ✅ **Browser Console**: Display Network tab showing all API calls
+- ✅ **API Endpoints Demonstrated**:
+  - `GET /listings` - Fetch all listings
+  - `POST /listings` - Create new listing
+  - `GET /listings/{id}` - Get listing details
+  - `PUT /listings/{id}` - Update listing
+  - `DELETE /listings/{id}` - Delete listing
+  - `POST /chat` - Send message
+  - `GET /chat/{listing_id}` - Get conversation
+  - `POST /auth/register` - User registration
+  - `POST /auth/login` - User login
+  - `POST /search/nlp` - NLP-powered search
+  - `GET /admin/listings` - Admin approval panel
+- ✅ **Request/Response Headers**: Show authentication tokens (JWT)
+- ✅ **Response Times**: Demonstrate API performance
+
+### Demo Flow (15-20 minutes)
+1. **Login** - Show sign-in with different user roles (buyer, seller, admin)
+2. **Seller Demo** - Create a listing, upload photo, view dashboard
+3. **Buyer Demo** - Search listings, use NLP search, view details
+4. **Chat Demo** - Send/receive messages between buyer and seller
+5. **Admin Demo** - Approve listings, delete inappropriate content, view reports
+6. **Search Features** - Show standard search, filters, and AI-powered NL search
+7. **Network Console** - Open browser Network tab and show API calls in real-time
+8. **Cloud Infrastructure** - Display deployment diagram and infrastructure details
+
+### Technology Stack Demonstrated
+- **Frontend**: Next.js 15.5.4 with React 19, Tailwind CSS, TypeScript
+- **Backend**: FastAPI with Python, SQLAlchemy ORM
+- **Database**: PostgreSQL (Cloud-hosted)
+- **Authentication**: JWT-based secure authentication
+- **AI/NLP**: GPT API integration for natural language search
+- **Cloud**: AWS EC2 with Auto-Scaling & Load Balancer (or Azure equivalent)
+- **Real-time**: WebSocket for live chat updates 
