@@ -1,0 +1,56 @@
+graph TB
+    subgraph Actors
+        B["👤 Buyer"]
+        S["👨‍🏫 Seller"]
+        A["👨‍💼 Admin"]
+    end
+
+    subgraph BuyerUseCases["Buyer Use Cases"]
+        B1["Register/Login"]
+        B2["Browse Listings"]
+        B3["Search Listings"]
+        B4["View Detail"]
+        B5["Chat with Seller"]
+        B6["Report Listing"]
+    end
+
+    subgraph SellerUseCases["Seller Use Cases"]
+        S1["Register/Login"]
+        S2["Create Listing"]
+        S3["Upload Photos"]
+        S4["Edit Listing"]
+        S5["Mark as Sold"]
+        S6["Chat with Buyers"]
+    end
+
+    subgraph AdminUseCases["Admin Use Cases"]
+        A1["Login"]
+        A2["View Dashboard"]
+        A3["Review Reports"]
+        A4["Manage Listings"]
+        A5["Manage Users"]
+    end
+
+    B --> B1
+    B --> B2
+    B --> B3
+    B --> B4
+    B --> B5
+    B --> B6
+
+    S --> S1
+    S --> S2
+    S --> S3
+    S --> S4
+    S --> S5
+    S --> S6
+
+    A --> A1
+    A --> A2
+    A --> A3
+    A --> A4
+    A --> A5
+    
+    style B fill:#c8e6c9
+    style S fill:#bbdefb
+    style A fill:#ffe0b2

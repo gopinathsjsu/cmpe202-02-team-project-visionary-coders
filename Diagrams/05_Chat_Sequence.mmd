@@ -1,0 +1,28 @@
+sequenceDiagram
+    participant Buyer as Buyer
+    participant FB as Frontend-Buyer
+    participant Backend as Backend
+    participant DB as Database
+    participant FS as Frontend-Seller
+    participant Seller as Seller
+
+    Buyer->>FB: Click "Contact Seller"
+    FB->>Backend: WS /ws/chat/room_id
+    Backend->>DB: Create/get chat room
+    Backend-->>FB: Connection established
+    
+    Seller->>FS: Open chat
+    FS->>Backend: WS /ws/chat/room_id
+    Backend-->>FS: Connection established
+    
+    Buyer->>FB: Type message
+    FB->>Backend: Send via WebSocket
+    Backend->>DB: Save message to database
+    Backend->>FS: Broadcast message
+    FS-->>Seller: Show message
+    
+    Seller->>FS: Type reply
+    FS->>Backend: Send via WebSocket
+    Backend->>DB: Save message
+    Backend->>FB: Broadcast reply
+    FB-->>Buyer: Show reply

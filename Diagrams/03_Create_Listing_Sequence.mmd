@@ -1,0 +1,24 @@
+sequenceDiagram
+    participant Seller as Seller
+    participant Frontend as Frontend
+    participant Backend as Backend
+    participant S3 as S3 Storage
+    participant DB as Database
+
+    Seller->>Frontend: Fill listing form
+    Seller->>Frontend: Upload photos
+    Frontend->>Frontend: Validate form data
+    Frontend->>Frontend: Compress images
+    Frontend->>Backend: POST /listings + photos
+    Backend->>Backend: Validate JWT token
+    Backend->>Backend: Check user is seller
+    Backend->>Backend: Validate input data
+    loop For each photo
+        Backend->>S3: Upload image
+        S3-->>Backend: Return image URL
+    end
+    Backend->>DB: Create listing record
+    Backend->>DB: Insert photo URLs
+    DB-->>Backend: Listing created with ID
+    Backend-->>Frontend: Success + Listing ID
+    Frontend-->>Seller: Show confirmation

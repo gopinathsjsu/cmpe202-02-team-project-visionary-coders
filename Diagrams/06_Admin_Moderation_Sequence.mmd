@@ -1,0 +1,35 @@
+sequenceDiagram
+    participant Buyer as Buyer
+    participant BF as Buyer Frontend
+    participant Backend as Backend
+    participant DB as Database
+    participant Admin as Admin
+    participant AF as Admin Frontend
+
+    Buyer->>BF: Click "Report Listing"
+    BF->>BF: Show report form
+    Buyer->>BF: Submit report with reason
+    BF->>Backend: POST /reports
+    Backend->>Backend: Validate input
+    Backend->>DB: Create report record
+    DB-->>Backend: Report created
+    Backend-->>BF: Report submitted
+    
+    Admin->>AF: Open admin dashboard
+    AF->>Backend: GET /admin/dashboard
+    Backend->>DB: Get statistics and pending reports
+    DB-->>AF: Dashboard data
+    AF-->>Admin: Show 5 pending reports
+    
+    Admin->>AF: Click on report
+    AF->>Backend: GET /reports/{id}
+    Backend->>DB: Get report details
+    DB-->>AF: Report details + listing
+    AF-->>Admin: Show report details
+    
+    Admin->>AF: Choose action: "Remove listing"
+    AF->>Backend: PATCH /reports/{id}/resolve
+    Backend->>DB: Update report status and listing
+    DB-->>Backend: Changes saved
+    Backend-->>AF: Report resolved
+    AF-->>Admin: Show confirmation

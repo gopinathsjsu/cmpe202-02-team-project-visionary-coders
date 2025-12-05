@@ -1,0 +1,35 @@
+stateDiagram-v2
+    [*] --> Not_Authenticated
+
+    Not_Authenticated --> Registering: Click Sign Up
+    Not_Authenticated --> Authenticating: Click Sign In
+
+    Registering --> Validate_Email: Enter email
+    Validate_Email --> Email_Invalid: Invalid .edu
+    Email_Invalid --> Registering: Retry
+    Validate_Email --> Email_Valid: Valid
+    Email_Valid --> Validate_Password: Enter password
+    Validate_Password --> Password_Weak: Weak
+    Password_Weak --> Validate_Password: Retry
+    Validate_Password --> Password_Strong: Strong
+    Password_Strong --> Check_Email_Exists: Query DB
+    Check_Email_Exists --> Email_Exists: Email taken
+    Email_Exists --> Registering: Retry
+    Check_Email_Exists --> Email_Available: Available
+    Email_Available --> Creating_Account: Hash & save
+    Creating_Account --> Authenticated: JWT token
+
+    Authenticating --> Check_Credentials: Submit
+    Check_Credentials --> Invalid: Mismatch
+    Invalid --> Authenticating: Retry
+    Check_Credentials --> Valid: Match
+    Valid --> Authenticated: JWT token
+
+    Authenticated --> Token_Valid: Token in memory
+    Token_Valid --> Session_Active: Using token
+    Session_Active --> Token_Valid: Update
+    Token_Valid --> Token_Expired: 60 min passed
+    Token_Expired --> Not_Authenticated: Login again
+
+    Authenticated --> Logout: User logout
+    Logout --> Not_Authenticated: Clear token

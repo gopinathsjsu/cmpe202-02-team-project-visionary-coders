@@ -1,0 +1,39 @@
+graph TD
+    A["User Opens Marketplace"] --> B["Select Search Type"]
+    
+    B -->|Keyword| C["Enter Keywords"]
+    B -->|NLP| D["Ask Natural Language"]
+    
+    C --> E["Apply Filters"]
+    D --> F["Submit to Backend"]
+    
+    E --> G["Query Database"]
+    F --> H{"OpenAI<br/>Available?"}
+    
+    H -->|Yes| I["Parse Query"]
+    H -->|No| J["Keyword Fallback"]
+    
+    I --> K["Extract Parameters"]
+    J --> K
+    
+    K --> L["Build SQL Query"]
+    L --> G
+    
+    G --> M["Results Found?"]
+    
+    M -->|Yes| N["Rank Results"]
+    M -->|No| O["No Results"]
+    
+    N --> P["Return Top 20"]
+    O --> Q["Suggest Search"]
+    
+    P --> R["Display in UI"]
+    Q --> R
+    
+    R --> S["User Clicks Listing"]
+    S --> T["Show Detail"]
+    T --> U["Chat Option"]
+    
+    style A fill:#e3f2fd
+    style P fill:#fce4ec
+    style U fill:#c8e6c9

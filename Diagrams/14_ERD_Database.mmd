@@ -1,0 +1,62 @@
+erDiagram
+    USER ||--o{ LISTING : creates
+    USER ||--o{ CHATROOM : participates_in
+    USER ||--o{ MESSAGE : sends
+    USER ||--o{ REPORT : makes
+    LISTING ||--o{ CHATROOM : discussed_in
+    LISTING ||--o{ REPORT : reported_in
+    LISTING ||--o{ LISTING_PHOTO : contains
+    CHATROOM ||--o{ MESSAGE : contains
+
+    USER {
+        uuid id PK
+        string email UK
+        string password_hash
+        string full_name
+        enum role
+        datetime created_at
+    }
+
+    LISTING {
+        uuid id PK
+        uuid seller_id FK
+        string title
+        text description
+        string category
+        decimal price
+        enum status
+        datetime created_at
+    }
+
+    LISTING_PHOTO {
+        uuid id PK
+        uuid listing_id FK
+        string photo_url
+        datetime created_at
+    }
+
+    CHATROOM {
+        uuid id PK
+        uuid buyer_id FK
+        uuid seller_id FK
+        uuid listing_id FK
+        datetime created_at
+    }
+
+    MESSAGE {
+        uuid id PK
+        uuid chat_room_id FK
+        uuid sender_id FK
+        text content
+        boolean is_read
+        datetime created_at
+    }
+
+    REPORT {
+        uuid id PK
+        uuid reporter_id FK
+        uuid listing_id FK
+        string reason
+        enum status
+        datetime created_at
+    }

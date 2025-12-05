@@ -1,0 +1,22 @@
+sequenceDiagram
+    participant Buyer as Buyer
+    participant Frontend as Frontend
+    participant Backend as Backend
+    participant OpenAI as OpenAI API
+    participant DB as Database
+
+    Buyer->>Frontend: Enter: "laptop for programming"
+    Frontend->>Backend: POST /search/nl
+    Backend->>Backend: Check OpenAI API available
+    alt OpenAI Available
+        Backend->>OpenAI: Send query for parsing
+        OpenAI-->>Backend: Parsed parameters
+        Backend->>Backend: Extract category/keywords/price
+    else OpenAI Unavailable
+        Backend->>Backend: Fallback to keyword search
+    end
+    Backend->>DB: Query with filters
+    DB-->>Backend: Return 50 listings
+    Backend->>Backend: Rank results by relevance
+    Backend-->>Frontend: Ranked results
+    Frontend-->>Buyer: Display results

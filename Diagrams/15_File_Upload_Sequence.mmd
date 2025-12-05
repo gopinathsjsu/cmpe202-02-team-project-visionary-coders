@@ -1,0 +1,24 @@
+sequenceDiagram
+    participant User as User
+    participant Frontend as Frontend
+    participant Backend as Backend
+    participant S3 as AWS S3
+    participant DB as Database
+
+    User->>Frontend: Select photo
+    Frontend->>Frontend: Validate file
+    Frontend->>Frontend: Compress image
+    Frontend->>Backend: POST /listings/{id}/photos
+    Backend->>Backend: Validate JWT
+    Backend->>Backend: Validate file
+    alt Local Storage
+        Backend->>Backend: Save to ./media/
+    else S3 Storage
+        Backend->>S3: Upload file
+        S3-->>Backend: Return S3 URL
+    end
+    Backend->>DB: Insert photo record
+    DB-->>Backend: Success
+    Backend-->>Frontend: Photo URL
+    Frontend->>Frontend: Add to gallery
+    Frontend-->>User: Show photo

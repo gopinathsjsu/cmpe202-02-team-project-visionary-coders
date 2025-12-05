@@ -1,0 +1,44 @@
+graph LR
+    subgraph Frontend["Frontend Layer"]
+        UI["React Components<br/>Next.js"]
+        Auth["Auth Context<br/>JWT"]
+        API["API Client<br/>Axios"]
+        Form["Form Validation<br/>React Hook Form"]
+    end
+
+    subgraph Backend["Backend Layer"]
+        Router["API Routers<br/>FastAPI"]
+        Security["Security<br/>JWT + RBAC"]
+        Service["Services<br/>Business Logic"]
+        ORM["ORM Layer<br/>SQLAlchemy"]
+    end
+
+    subgraph Database["Data Layer"]
+        DB["Database<br/>SQLite/PostgreSQL"]
+        Cache["Cache<br/>In-memory"]
+    end
+
+    subgraph External["External Services"]
+        OpenAI["OpenAI API<br/>NLP Search"]
+        S3["S3 Storage<br/>Media"]
+    end
+
+    UI -->|HTTP/JSON| Router
+    Auth -->|Token| API
+    API -->|Requests| Router
+    Form -->|Validation| API
+    
+    Router -->|Auth Check| Security
+    Router -->|Logic| Service
+    
+    Service -->|Query| ORM
+    Service -->|NLP| OpenAI
+    Service -->|Upload| S3
+    
+    ORM -->|SQL| DB
+    Security -->|Cache| Cache
+    
+    style Frontend fill:#e1f5ff
+    style Backend fill:#fff3e0
+    style Database fill:#f3e5f5
+    style External fill:#e8f5e9

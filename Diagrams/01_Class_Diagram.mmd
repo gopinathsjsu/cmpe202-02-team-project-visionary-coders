@@ -1,0 +1,95 @@
+classDiagram
+    class User {
+        +UUID id
+        +String email
+        +String password_hash
+        +String full_name
+        +Enum role
+        +String profile_picture
+        +String bio
+        +String college_name
+        +DateTime created_at
+        +DateTime updated_at
+        +register()
+        +login()
+        +updateProfile()
+        +getListings()
+    }
+
+    class Listing {
+        +UUID id
+        +UUID seller_id
+        +String title
+        +String description
+        +String category
+        +Decimal price
+        +Enum status
+        +List images
+        +DateTime created_at
+        +DateTime updated_at
+        +create()
+        +update()
+        +markAsSold()
+        +uploadPhoto()
+        +getDetails()
+    }
+
+    class ChatRoom {
+        +UUID id
+        +UUID buyer_id
+        +UUID seller_id
+        +UUID listing_id
+        +DateTime created_at
+        +DateTime updated_at
+        +getHistory()
+        +addMessage()
+        +close()
+    }
+
+    class Message {
+        +UUID id
+        +UUID chat_room_id
+        +UUID sender_id
+        +String content
+        +Boolean is_read
+        +DateTime created_at
+        +sendMessage()
+        +markAsRead()
+    }
+
+    class Report {
+        +UUID id
+        +UUID reporter_id
+        +UUID listing_id
+        +String reason
+        +String description
+        +Enum status
+        +String admin_notes
+        +DateTime created_at
+        +DateTime resolved_at
+        +create()
+        +resolve()
+        +dismiss()
+    }
+
+    class Admin {
+        +UUID id
+        +String email
+        +Enum role
+        +getDashboard()
+        +approveListing()
+        +removeListing()
+        +manageUsers()
+        +resolveReports()
+        +getAnalytics()
+    }
+
+    User "1" --> "*" Listing : creates
+    User "1" --> "*" ChatRoom : participates_in
+    User "1" --> "*" Message : sends
+    User "1" --> "*" Report : makes
+    Listing "1" --> "*" ChatRoom : discussed_in
+    Listing "1" --> "*" Report : reported_in
+    ChatRoom "1" --> "*" Message : contains
+    Admin "1" --> "*" Report : resolves
+    Admin "1" --> "*" Listing : moderates

@@ -1,0 +1,19 @@
+sequenceDiagram
+    participant User as User
+    participant Frontend as Frontend
+    participant Backend as Backend
+    participant DB as Database
+
+    User->>Frontend: Enter email & password
+    Frontend->>Frontend: Validate email format
+    Frontend->>Frontend: Validate password strength
+    Frontend->>Backend: POST /auth/register
+    Backend->>Backend: Validate .edu domain
+    Backend->>DB: Check if email exists
+    DB-->>Backend: Email not found
+    Backend->>Backend: Hash password (bcrypt)
+    Backend->>DB: Create user record
+    DB-->>Backend: User created
+    Backend-->>Frontend: Success + JWT Token
+    Frontend->>Frontend: Store token
+    Frontend-->>User: Redirect to dashboard

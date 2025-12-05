@@ -1,0 +1,28 @@
+sequenceDiagram
+    participant Client as Client
+    participant Server as Server
+    participant SecretStore as Secret Store
+    participant DB as Database
+
+    Client->>Server: Request with JWT in header
+    Server->>SecretStore: Get SECRET_KEY
+    SecretStore-->>Server: SECRET_KEY loaded
+    Server->>Server: Decode JWT
+    alt Signature Valid
+        Server->>Server: Extract user_id, role, exp
+        Server->>DB: Get user record
+        DB-->>Server: User data
+        Server->>Server: Check token expiration
+        alt Token Not Expired
+            Server->>Server: Check user role for endpoint
+            alt Role Authorized
+                Server-->>Client: 200 Success + Data
+            else Role Not Authorized
+                Server-->>Client: 403 Forbidden
+            end
+        else Token Expired
+            Server-->>Client: 401 Unauthorized
+        end
+    else Signature Invalid
+        Server-->>Client: 401 Unauthorized
+    end

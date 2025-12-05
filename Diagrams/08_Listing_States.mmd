@@ -1,0 +1,29 @@
+stateDiagram-v2
+    [*] --> Draft: Create new listing
+
+    Draft --> Published: Click Publish
+    Draft --> [*]: Discard
+
+    Published --> Active: Admin approval
+    Published --> Rejected: Admin rejects
+
+    Rejected --> [*]: Archived
+
+    Active --> Available: Listing goes live
+
+    Available --> Pending_Sale: Buyer interested
+    Pending_Sale --> Available: Deal fell through
+    Pending_Sale --> Sold: Mark as sold
+
+    Sold --> [*]: Archived
+
+    Available --> Reported: Buyer reports
+    Reported --> Under_Review: Admin reviews
+    Under_Review --> Available: Report dismissed
+    Under_Review --> Removed: Report confirmed
+
+    Removed --> [*]: Archived
+
+    Available --> Expired: 30 days passed
+
+    Expired --> [*]: Archived

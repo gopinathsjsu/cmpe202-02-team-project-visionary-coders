@@ -1,0 +1,36 @@
+graph TB
+    Internet["Internet<br/>Users"]
+    Route53["AWS Route 53<br/>DNS"]
+    CloudFront["CloudFront<br/>CDN"]
+    ALB["Application<br/>Load Balancer"]
+    ASG["Auto Scaling<br/>Group"]
+    EC2A["EC2 Instance A<br/>Docker: FastAPI"]
+    EC2B["EC2 Instance B<br/>Docker: FastAPI"]
+    RDS["RDS<br/>PostgreSQL"]
+    S3["S3 Bucket<br/>Media"]
+    Secrets["Secrets Manager"]
+    CloudWatch["CloudWatch<br/>Monitoring"]
+
+    Internet -->|DNS| Route53
+    Route53 -->|Static| CloudFront
+    Route53 -->|API| ALB
+    CloudFront -->|Fallback| ALB
+    ALB -->|Distribute| ASG
+    ASG -->|Scale| EC2A
+    ASG -->|Scale| EC2B
+    EC2A -->|Query| RDS
+    EC2B -->|Query| RDS
+    EC2A -->|Upload| S3
+    EC2B -->|Upload| S3
+    EC2A -->|Secrets| Secrets
+    EC2B -->|Secrets| Secrets
+    EC2A -->|Logs| CloudWatch
+    EC2B -->|Logs| CloudWatch
+    
+    style Route53 fill:#ffcdd2
+    style ALB fill:#ffcdd2
+    style ASG fill:#fff9c4
+    style EC2A fill:#c8e6c9
+    style EC2B fill:#c8e6c9
+    style RDS fill:#bbdefb
+    style S3 fill:#bbdefb
