@@ -128,7 +128,7 @@ The frontend is optimized for deployment on **Vercel** or **Railway**.
 | **Manasa Sadhu** | Buyer & Seller UI (Browse, Search, Filters), Product Details Page, Sign-In & Sign-Up Pages, Real-time Chat System, Database Design & Seeding, Mock Data Generation | API Integration, Authentication & Authorization, Input Validation, Database Optimization |
 | **Krishna Panjiyar** | Natural Language Processing (NLP) Search Engine, Chatbot Integration with GPT API, Search Optimization, Query Processing | Backend API Endpoints for Search, Database Query Optimization, AI Integration |
 | **Tejkiran Yenugunti** | Admin Dashboard & Moderation Panel, Listing Approval Workflow, User Management Interface, Report Handling System | Backend Admin API Endpoints, Role-Based Access Control, Analytics, User Moderation |
-| **Girith Chaudary** | Cloud Deployment (Azure/AWS), CI/CD Pipeline Setup, Infrastructure as Code, Auto-Scaling Configuration, Load Balancer Setup | Database Migration, Environment Configuration, Monitoring & Logging, DevOps |
+| **Girith Choudhary** | Cloud Deployment (Azure/AWS), CI/CD Pipeline Setup, Infrastructure as Code, Auto-Scaling Configuration, Load Balancer Setup | Database Migration, Environment Configuration, Monitoring & Logging, DevOps |
 
 ## Key Features Implemented
 
