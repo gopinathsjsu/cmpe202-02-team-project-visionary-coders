@@ -125,7 +125,7 @@ The frontend is optimized for deployment on **Vercel** or **Railway**.
 
 | Member | Primary Contributions | Secondary Contributions |
 |--------|----------------------|------------------------|
-| **Aravind Reddy** | Buyer & Seller UI (Browse, Search, Filters), Product Details Page, Sign-In & Sign-Up Pages, Real-time Chat System | API Integration, Database Schema Design, Authentication & Authorization |
+| **Manasa Sadhu** | Buyer & Seller UI (Browse, Search, Filters), Product Details Page, Sign-In & Sign-Up Pages, Real-time Chat System for negotiation | API Integration, Database Schema Design, Authentication & Authorization |
 | **Krishna Panjiyar** | Natural Language Processing (NLP) Search Engine, Chatbot Integration with GPT API, Search Optimization, Query Processing | Backend API Endpoints for Search, Database Query Optimization |
 | **Tejkiran Yenugunti** | Admin Dashboard & Moderation Panel, Listing Approval Workflow, User Management Interface, Report Handling System | Backend Admin API Endpoints, Role-Based Access Control, Analytics |
 | **Girith Chaudary** | Cloud Deployment (Azure/AWS), CI/CD Pipeline Setup, Infrastructure as Code, Auto-Scaling Configuration, Load Balancer Setup | Database Migration, Environment Configuration, Monitoring & Logging |
@@ -133,13 +133,13 @@ The frontend is optimized for deployment on **Vercel** or **Railway**.
 
 ## Key Features Implemented
 
-- ✅ **Buyer Features**: Browse listings, advanced search with NLP, price/category filters, real-time chat with sellers
-- ✅ **Seller Features**: Create/edit/delete listings, upload product photos, mark items as sold, negotiate with buyers
-- ✅ **Admin Features**: Approve/reject listings, manage users, handle reports, view platform statistics
-- ✅ **Search System**: Natural language based search using GPT API (e.g., "Do you have a textbook for CMPE202?")
-- ✅ **Real-time Chat**: In-app messaging between buyers and sellers for price negotiation
-- ✅ **Authentication**: JWT-based secure authentication with .edu email verification
-- ✅ **Cloud Deployment**: Auto-scaled infrastructure with load balancing
+- **Buyer Features**: Browse listings, advanced search with NLP, price/category filters, real-time chat with sellers
+- **Seller Features**: Create/edit/delete listings, upload product photos, mark items as sold, negotiate with buyers
+- **Admin Features**: Approve/reject listings, manage users, handle reports, view platform statistics
+- **Search System**: Natural language based search using GPT API (e.g., "Do you have a textbook for CMPE202?")
+- **Real-time Chat**: In-app messaging between buyers and sellers for price negotiation
+- **Authentication**: JWT-based secure authentication with .edu email verification
+- **Cloud Deployment**: Auto-scaled infrastructure with load balancing
 
 ## Demo Day Features (December 4, 2025)
 
@@ -171,28 +171,28 @@ The frontend is optimized for deployment on **Vercel** or **Railway**.
 - ✅ **Report Listings**: Report incomplete or suspicious listings to admin
 
 ### 4. **Admin Role Features**
-- ✅ **Admin Dashboard**: View platform statistics and pending items
-- ✅ **Listing Moderation**: Approve or reject seller listings
-- ✅ **Delete Listings**: Remove inappropriate or duplicate listings
-- ✅ **Manage Users**: View registered users and their roles
-- ✅ **Handle Reports**: View and process buyer reports
+- **Admin Dashboard**: View platform statistics and pending items
+- **Listing Moderation**: Approve or reject seller listings
+- **Delete Listings**: Remove inappropriate or duplicate listings
+- **Manage Users**: View registered users and their roles
+- **Handle Reports**: View and process buyer reports
 
 ### 5. **Real-Time Chat System (All Users)**
-- ✅ **Buyer → Seller**: Send inquiries about products
-- ✅ **Seller → Buyer**: Respond to buyer messages
-- ✅ **Chat History**: View conversation thread for each listing
-- ✅ **Real-time Updates**: Live message delivery
+- **Buyer → Seller**: Send inquiries about products
+- **Seller → Buyer**: Respond to buyer messages
+- **Chat History**: View conversation thread for each listing
+- **Real-time Updates**: Live message delivery
 
 ### 6. **Cloud Deployment & Infrastructure**
-- ✅ **API Hosting**: Running on AWS EC2 or Azure with auto-scaling
-- ✅ **Database Hosting**: PostgreSQL on managed cloud database service
-- ✅ **Load Balancer**: Distributes traffic across instances
-- ✅ **Auto-Scaling**: Infrastructure scales based on demand
-- ✅ **Configuration Display**: Show cloud setup details and architecture
+- **API Hosting**: Running on AWS EC2 or Azure with auto-scaling
+- **Database Hosting**: PostgreSQL on managed cloud database service
+- **Load Balancer**: Distributes traffic across instances
+- **Auto-Scaling**: Infrastructure scales based on demand
+- **Configuration Display**: Show cloud setup details and architecture
 
 ### 7. **Network Activity Visualization**
-- ✅ **Browser Console**: Display Network tab showing all API calls
-- ✅ **API Endpoints Demonstrated**:
+- **Browser Console**: Display Network tab showing all API calls
+- **API Endpoints Demonstrated**:
   - `GET /listings` - Fetch all listings
   - `POST /listings` - Create new listing
   - `GET /listings/{id}` - Get listing details
@@ -204,8 +204,8 @@ The frontend is optimized for deployment on **Vercel** or **Railway**.
   - `POST /auth/login` - User login
   - `POST /search/nlp` - NLP-powered search
   - `GET /admin/listings` - Admin approval panel
-- ✅ **Request/Response Headers**: Show authentication tokens (JWT)
-- ✅ **Response Times**: Demonstrate API performance
+- **Request/Response Headers**: Show authentication tokens (JWT)
+- **Response Times**: Demonstrate API performance
 
 ### Demo Flow (15-20 minutes)
 1. **Login** - Show sign-in with different user roles (buyer, seller, admin)
