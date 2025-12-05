@@ -16,6 +16,7 @@ class ListingStatus(str, Enum):
     pending = "pending"
     approved = "approved"
     rejected = "rejected"
+
 class Listing(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     title: str

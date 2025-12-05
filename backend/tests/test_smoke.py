@@ -6,6 +6,7 @@ def test_docs():
     r = client.get("/docs")
     assert r.status_code == 200
 
+
 def test_admin_summary_requires_auth():
     client = TestClient(app)
     r = client.get("/admin/summary")

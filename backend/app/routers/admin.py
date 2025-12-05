@@ -101,6 +101,7 @@ def delete_listing(listing_id: int, session: Session = Depends(__import__("app.d
     session.delete(listing)
     session.commit()
     return {"ok": True}
+
 @router.get("/reports", response_model=List[ReportPublic])
 def list_reports(session: Session = Depends(__import__("app.db.session", fromlist=["get_session"]).get_session), user=Depends(require_role(Role.admin))):
     reports = session.exec(select(Report).order_by(Report.created_at.desc())).all()
@@ -113,6 +114,7 @@ def resolve_report(report_id: int, session: Session = Depends(__import__("app.db
     rep.resolved = True
     session.add(rep); session.commit()
     return {"ok": True}
+
 @router.get("/users", response_model=List[UserPublic])
 def list_users(session: Session = Depends(__import__("app.db.session", fromlist=["get_session"]).get_session), user=Depends(require_role(Role.admin))):
     users = session.exec(select(User)).all()
