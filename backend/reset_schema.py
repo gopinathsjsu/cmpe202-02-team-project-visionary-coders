@@ -1,6 +1,5 @@
 from sqlmodel import SQLModel
 from app.db.session import engine
-# Import all models to ensure they are registered in metadata
 from app.models import *
 
 def reset():
