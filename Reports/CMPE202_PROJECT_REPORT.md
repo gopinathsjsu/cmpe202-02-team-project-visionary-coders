@@ -1231,7 +1231,7 @@ The platform is production-ready for deployment on AWS or Azure, with mock data 
 
 **Team Members:**
 
-- Tej Yenugunti (Dashboard)
+- Tej Kiran Yenugunti (Dashboard)
 - Girith Chaudary (Authentication & Deployment)
 - Manasa Sadhu (UI & Chat)
 - Krishna Panjiyar (Frontend & NLP Search)
@@ -1247,7 +1247,7 @@ The platform is production-ready for deployment on AWS or Azure, with mock data 
 - **Project Journal:** GitHub Wiki or Docs folder
 - **Sprint Backlogs:** Google Sheets (linked in README)
 - **API Documentation:** `http://localhost:8000/docs` (local) or deployed URL
-- **Demo Video:** [Link to recorded demo, if available]
+
 
 ---
 
