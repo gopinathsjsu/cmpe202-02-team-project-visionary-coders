@@ -140,7 +140,7 @@ The frontend is optimized for deployment on **Vercel** or **Railway**.
 - **Authentication**: JWT-based secure authentication with .edu email verification
 - **Cloud Deployment**: Auto-scaled infrastructure with load balancing
 
-## Demo Day Features (December 4, 2025)
+## Demo Features
 
 ### 1. **Web-Based UI - Fully Integrated with API & Database**
 - Responsive web application running on Next.js
