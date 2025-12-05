@@ -120,7 +120,23 @@ The frontend is optimized for deployment on **Vercel** or **Railway**.
 - Configure the `NEXT_PUBLIC_API_URL` environment variable to point to the deployed backend URL.
 
 ## Team Members
-- Manasa Sadhu
-- Girith Chaudary
-- Krishna Panjiyar
-- Tejkiran Yenugunti 
+
+### Team: Visionary Coders
+
+| Member | Primary Contributions | Secondary Contributions |
+|--------|----------------------|------------------------|
+| **Aravind Reddy** | Buyer & Seller UI (Browse, Search, Filters), Product Details Page, Sign-In & Sign-Up Pages, Real-time Chat System | API Integration, Database Schema Design, Authentication & Authorization |
+| **Krishna Panjiyar** | Natural Language Processing (NLP) Search Engine, Chatbot Integration with GPT API, Search Optimization, Query Processing | Backend API Endpoints for Search, Database Query Optimization |
+| **Tejkiran Yenugunti** | Admin Dashboard & Moderation Panel, Listing Approval Workflow, User Management Interface, Report Handling System | Backend Admin API Endpoints, Role-Based Access Control, Analytics |
+| **Girith Chaudary** | Cloud Deployment (Azure/AWS), CI/CD Pipeline Setup, Infrastructure as Code, Auto-Scaling Configuration, Load Balancer Setup | Database Migration, Environment Configuration, Monitoring & Logging |
+| **Manasa Sadhu** | Database Design & Seeding, Mock Data Generation, Entity Relationship Modeling, Data Validation | API Error Handling, Input Validation, Database Optimization, Testing |
+
+## Key Features Implemented
+
+- ✅ **Buyer Features**: Browse listings, advanced search with NLP, price/category filters, real-time chat with sellers
+- ✅ **Seller Features**: Create/edit/delete listings, upload product photos, mark items as sold, negotiate with buyers
+- ✅ **Admin Features**: Approve/reject listings, manage users, handle reports, view platform statistics
+- ✅ **Search System**: Natural language based search using GPT API (e.g., "Do you have a textbook for CMPE202?")
+- ✅ **Real-time Chat**: In-app messaging between buyers and sellers for price negotiation
+- ✅ **Authentication**: JWT-based secure authentication with .edu email verification
+- ✅ **Cloud Deployment**: Auto-scaled infrastructure with load balancing 
